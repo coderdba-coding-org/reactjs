@@ -1,5 +1,6 @@
 import React from 'react';
 
+// https://www.tutorialspoint.com/reactjs/reactjs_jsx.htm
 // nested elements, conditional expressions, arithmetic, attributes
 
 class Jsx01 extends React.Component {

@@ -1,6 +1,22 @@
+#==============
+# DOCS
+#==============
+Main Tutorials:
 https://www.w3schools.com/REACT/
 https://www.tutorialspoint.com/reactjs/reactjs_components.htm
 
+In depth jsx: 
+https://www.tutorialspoint.com/jsx-in-depth-in-react-js --> for React.createElement
+https://learn.co/lessons/react-create-element --> for React.createElement
+https://stackoverflow.com/questions/61794412/how-to-concatenate-react-objects-without-jsx --> concatenate elements/objects
+
+Some more reading:
+https://datacadamia.com/web/javascript/react/children
+
+
+#==============
+# START WORK
+#==============
 Comment out private registries in ~/.npmrc
 To check - npm config get
 
