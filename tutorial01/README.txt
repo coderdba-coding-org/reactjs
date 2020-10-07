@@ -1,4 +1,5 @@
 https://www.w3schools.com/REACT/
+https://www.tutorialspoint.com/reactjs/reactjs_components.htm
 
 Comment out private registries in ~/.npmrc
 To check - npm config get
@@ -86,6 +87,9 @@ class Welcome extends React.Component {
 
 
 # Theory - root element and getelementbyid(root)
+NOTE: Not sure if it can be called by any name - does not have to be 'root' 
+https://www.w3schools.com/REACT/react_render.asp --> this says it can be named something else, but it did not work
+
 https://datacadamia.com/web/javascript/react/root
 The root element of the React DOM tree is the one that is passed to the rendering function ReactDOM.render
 - STUFF INSIDE IT WILL BE MANAGED BY REACT DOM
