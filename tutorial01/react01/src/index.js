@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 //import RenderMyCar from './LessonClasses02.js';
 import Jsx01 from './LessonJsx01.jsx';
 import Jsx02 from './LessonJsx02.jsx';
+import Jsx03 from './LessonJsx03.jsx';
 
 //const myfirstelement = <h1>Hello React!!</h1>
 //ReactDOM.render(myfirstelement, document.getElementById('root'));
@@ -15,4 +16,7 @@ import Jsx02 from './LessonJsx02.jsx';
 //ReactDOM.render(<Jsx01 />, document.getElementById('root'));
 
 // for LessonJsx02
-ReactDOM.render(<Jsx02 />, document.getElementById('root'));
+//ReactDOM.render(<Jsx02 />, document.getElementById('root'));
+
+// for LessonJsx03
+ReactDOM.render(<Jsx03 />, document.getElementById('root'));
