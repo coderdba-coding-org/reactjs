@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import RenderMyCar from './LessonClasses01.js';
 //import RenderMyCar from './LessonClasses02.js';
-import Jsx01 from './LessonJsx01.jsx';
-import Jsx02 from './LessonJsx02.jsx';
-import Jsx03 from './LessonJsx03.jsx';
+//import Jsx01 from './LessonJsx01.jsx';
+//import Jsx02 from './LessonJsx02.jsx';
+//import Jsx03 from './LessonJsx03.jsx';
+//import RenderIt from './LessonProps01.js';
+//import RenderIt from './LessonProps02.js';
+//import RenderIt from './LessonProps03.js';
+//import RenderIt from './LessonProps04.js';
+import RenderIt from './LessonProps05.js';
 
 //const myfirstelement = <h1>Hello React!!</h1>
 //ReactDOM.render(myfirstelement, document.getElementById('root'));
@@ -19,4 +24,19 @@ import Jsx03 from './LessonJsx03.jsx';
 //ReactDOM.render(<Jsx02 />, document.getElementById('root'));
 
 // for LessonJsx03
-ReactDOM.render(<Jsx03 />, document.getElementById('root'));
+//ReactDOM.render(<Jsx03 />, document.getElementById('root'));
+
+// for LessonProps01
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonProps02
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonProps03
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonProps04
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonProps05
+ReactDOM.render(<RenderIt />, document.getElementById('root'));

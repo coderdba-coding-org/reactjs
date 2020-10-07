@@ -15,9 +15,8 @@ class Car {
 }
 
 function MyCar(brand){
-
-let mycar = new Car(brand);
-return mycar.present();
+  let mycar = new Car(brand);
+  return mycar.present();
 }
 
 class RenderMyCar extends React.Component {
