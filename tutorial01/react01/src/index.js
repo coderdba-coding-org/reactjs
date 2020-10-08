@@ -9,7 +9,11 @@ import ReactDOM from 'react-dom';
 //import RenderIt from './LessonProps02.js';
 //import RenderIt from './LessonProps03.js';
 //import RenderIt from './LessonProps04.js';
-import RenderIt from './LessonProps05.js';
+//import RenderIt from './LessonProps05.js';
+//import RenderIt from './LessonState01.js';
+//import RenderIt from './LessonState02.js';
+//import App from './LessonNestedComponents01.jsx';
+import App from './LessonNestedComponentsState01.jsx';
 
 //const myfirstelement = <h1>Hello React!!</h1>
 //ReactDOM.render(myfirstelement, document.getElementById('root'));
@@ -39,4 +43,16 @@ import RenderIt from './LessonProps05.js';
 //ReactDOM.render(<RenderIt />, document.getElementById('root'));
 
 // for LessonProps05
-ReactDOM.render(<RenderIt />, document.getElementById('root'));
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonState01
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonState02
+//ReactDOM.render(<RenderIt />, document.getElementById('root'));
+
+// for LessonNestedComponents01
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonNestedComponentsState01
+ReactDOM.render(<App />, document.getElementById('root'));
