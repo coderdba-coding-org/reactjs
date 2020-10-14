@@ -5,6 +5,9 @@ Main Tutorials:
 https://www.w3schools.com/REACT/
 https://www.tutorialspoint.com/reactjs/reactjs_components.htm
 
+Official docs:
+https://reactjs.org/docs/typechecking-with-proptypes.html
+
 In depth jsx: 
 https://www.tutorialspoint.com/jsx-in-depth-in-react-js --> for React.createElement
 https://learn.co/lessons/react-create-element --> for React.createElement

@@ -12,10 +12,14 @@ import ReactDOM from 'react-dom';
 //import RenderIt from './LessonProps05.js';
 //import RenderIt from './LessonState01.js';
 //import RenderIt from './LessonState02.js';
+//import App from './LessonState03.js';
+//import App from './LessonState04.js';
+import App from './LessonState05.js';
+
 //import App from './LessonNestedComponents01.jsx';
 //import App from './LessonNestedComponentsState01.jsx';
 //import Greeting from './LessonProps06Vaidation.js';
-import App from './LessonProps07Vaidation.js';
+//import App from './LessonProps07Vaidation.js';
 
 //const myfirstelement = <h1>Hello React!!</h1>
 //ReactDOM.render(myfirstelement, document.getElementById('root'));
@@ -53,6 +57,15 @@ import App from './LessonProps07Vaidation.js';
 // for LessonState02
 //ReactDOM.render(<RenderIt />, document.getElementById('root'));
 
+// for LessonState03
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonState04
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonState05
+ReactDOM.render(<App />, document.getElementById('root'));
+
 // for LessonNestedComponents01
 //ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -63,4 +76,5 @@ import App from './LessonProps07Vaidation.js';
 //ReactDOM.render(<Greeting />, document.getElementById('root'));
 
 // for LessonProps07Vaidation
-ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<App />, document.getElementById('root'));
+
