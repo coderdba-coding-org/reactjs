@@ -14,7 +14,8 @@ import ReactDOM from 'react-dom';
 //import RenderIt from './LessonState02.js';
 //import App from './LessonNestedComponents01.jsx';
 //import App from './LessonNestedComponentsState01.jsx';
-import App from './LessonProps06Vaidation.js';
+//import Greeting from './LessonProps06Vaidation.js';
+import App from './LessonProps07Vaidation.js';
 
 //const myfirstelement = <h1>Hello React!!</h1>
 //ReactDOM.render(myfirstelement, document.getElementById('root'));
@@ -59,4 +60,7 @@ import App from './LessonProps06Vaidation.js';
 //ReactDOM.render(<App />, document.getElementById('root'));
 
 // for LessonProps06Vaidation
+//ReactDOM.render(<Greeting />, document.getElementById('root'));
+
+// for LessonProps07Vaidation
 ReactDOM.render(<App />, document.getElementById('root'));
