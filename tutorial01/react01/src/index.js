@@ -14,7 +14,10 @@ import ReactDOM from 'react-dom';
 //import RenderIt from './LessonState02.js';
 //import App from './LessonState03.js';
 //import App from './LessonState04.js';
-import App from './LessonState05.js';
+//import App from './LessonState05.js';
+//import App from './LessonLifeCycle01.js';
+//import App from './LessonLifeCycle02.js';
+import App from './LessonLifeCycle03.js';
 
 //import App from './LessonNestedComponents01.jsx';
 //import App from './LessonNestedComponentsState01.jsx';
@@ -78,3 +81,11 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // for LessonProps07Vaidation
 //ReactDOM.render(<App />, document.getElementById('root'));
 
+// for LessonLifeCycle01.js
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonLifeCycle02.js
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonLifeCycle03.js
+ReactDOM.render(<App />, document.getElementById('root'));
