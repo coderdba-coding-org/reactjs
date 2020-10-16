@@ -4,7 +4,7 @@
 // In the shouldComponentUpdate() method you can return a Boolean value that specifies whether React should continue with the rendering or not.
 // The default value is true.
 // The example below shows what happens when the shouldComponentUpdate() method returns false:
-// Example: Stop the component from rendering at any update:
+// Example: Stop the component from rendering at any update: IF TRUE - allow update IF FALSE
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -15,7 +15,8 @@ class Header extends React.Component {
     this.state = {favoritecolor: "red"};
   }
   shouldComponentUpdate() {
-    return false;
+    //return false;
+    return true;
   }
   changeColor = () => {
     this.setState({favoritecolor: "blue"});
