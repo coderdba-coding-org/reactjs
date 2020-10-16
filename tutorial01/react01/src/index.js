@@ -19,7 +19,9 @@ import ReactDOM from 'react-dom';
 //import App from './LessonLifeCycle02.js';
 //import App from './LessonLifeCycle03.js';
 //import App from './LessonLifeCycle04.js';
-import App from './LessonLifeCycle05.js';
+//import App from './LessonLifeCycle05.js';
+//import App from './LessonLifeCycle06.js';
+import App from './LessonLifeCycle07.js';
 
 //import App from './LessonNestedComponents01.jsx';
 //import App from './LessonNestedComponentsState01.jsx';
@@ -96,4 +98,10 @@ ReactDOM.render(<App />, document.getElementById('root'));
 //ReactDOM.render(<App />, document.getElementById('root'));
 
 // for LessonLifeCycle05.js
+//ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonLifeCycle06.js
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+// for LessonLifeCycle07.js
 ReactDOM.render(<App />, document.getElementById('root'));
