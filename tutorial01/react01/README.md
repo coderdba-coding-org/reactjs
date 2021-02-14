@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 CODING NOTE
 ========================
 index.js renders App
+- By default it imports App.js - comment it and use other imports as needed
 Each module exports App for convenience
 Comment or uncomment module's import to run that module
 

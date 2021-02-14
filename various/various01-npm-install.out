@@ -1,0 +1,27 @@
+$ npm install pondjs
+npm WARN deprecated @babel/polyfill@7.12.1: 🚨 This package has been deprecated in favor of separate inclusion of a polyfill and regenerator-runtime (when needed). See the @babel/polyfill docs (https://babeljs.io/docs/en/babel-polyfill) for more information.
+npm WARN deprecated core-js@2.6.12: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+
+> core-js@2.6.12 postinstall /Users/username/stuff/mystuff/coderdba-coding-org/reactjs/various/various01/node_modules/@babel/polyfill/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+npm WARN react-hot-loader@4.1.2 requires a peer of react@^15.0.0 || ^16.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-timeseries-charts@0.16.1 requires a peer of pondjs@^0.8.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-timeseries-charts@0.16.1 requires a peer of react@^15.3.1 || ^16.0 but none is installed. You must install peer dependencies yourself.
+npm WARN tsutils@3.20.0 requires a peer of typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta but none is installed. You must install peer dependencies yourself.
+
++ pondjs@0.9.0
+added 5 packages from 3 contributors and audited 1975 packages in 20.958s
+
+120 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
