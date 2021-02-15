@@ -1,12 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
-import SimpleChart from './TimeSeries01/SimpleChart';
-
 function App() {
   return (
     <div className="App">
-      <section>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -21,10 +18,6 @@ function App() {
           Learn React
         </a>
       </header>
-      </section>
-        <SimpleChart />
-      <section>
-      </section>
     </div>
   );
 }
