@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-export function ReactSelect01(componentState) {
+export function ReactSelect01() {
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -10,7 +10,7 @@ export function ReactSelect01(componentState) {
     ];
 
     this.setState(componentState)
-    
+
     this.state = {
         selectedOption: null,
       };
