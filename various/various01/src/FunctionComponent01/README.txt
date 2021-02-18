@@ -17,3 +17,9 @@ Note: The input field receives the value of the component state too, because you
 As you have seen, React Hooks enable us to use state in React (Arrow) Function Components. Whereas you would have used a setState method to write state in a Class Component, you can use the useState hook to write state in a Function Component.
 
 Note: If you want to use React's Context in Function Components, check out React's Context Hook called useContext for reading from React's Context in a component.
+
+----------------------
+State01 programs
+----------------------
+State01a and State1b - with two variations of State01 - so that we can pass initial greeting from App.js
+- these take an input parameter, but are called differently in App.js
