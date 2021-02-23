@@ -2,38 +2,21 @@
 // Docs: https://github.com/d3/d3-force/blob/v2.1.1/README.md#forceSimulation
 
 import React from 'react'
-
 import * as d3 from 'd3'
 import data from './data.json'
-
-// did not use any from this - so commenting out
-//import styles from './styles.css'
+import styles from './styles.css'
 
 export function ForceGraph02(container) {
   const links = data.links
   const nodes = data.nodes
 
-  const height = 200
-  const width = 200
+  const height = 600
+  const width = 600
 
   const color = '#f6c3d0'
 
-  /*
-  Using React.useCallback here gave this error: (therefore, placed it in ForceGraph02App.js)
-    Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
-    1. You might have mismatching versions of React and the renderer (such as React DOM)
-    2. You might be breaking the Rules of Hooks
-    3. You might have more than one copy of React in the same app
-    See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
-
-    // defines behaviour of hovering tooltip over a node
-    const nodeHoverTooltip = React.useCallback((node) => {
-      return `<div>${node.name}</div>`
-    }, [])
-  */
-
-  // In this 'simulation' - d3.forceManyBody() - without parameters uses defaults
-  // In this 'simulation' - d3.forceCenter() - center of the force - defaults to 0,0
+  // d3.forceManyBody() - without parameters uses defaults
+  // d3.forceCenter() - center of the force - defaults to 0,0
   const simulation = d3
     .forceSimulation(nodes)
     .force(
@@ -68,18 +51,18 @@ export function ForceGraph02(container) {
       .on('end', dragended)
   }
 
-  /* original code from reference 
+  /* original code from reference
 //--> initially commented the line 'select.container' as we did have a container defined as in ForceGraph01
 const svg = d3.create("svg")
 .attr("viewBox", [0, 0, width, height]);
+//.select(container) 
 */
 
   // taken from the other example
   const svg = d3
     .select(container)
     .append('svg')
-    .attr('viewBox', [-width / 10, -height / 10, width, height])
-    //.attr('viewbox', [20,20,200,200])
+    .attr('viewBox', [-width / 2, -height / 2, width, height])
     .call(
       d3.zoom().on('zoom', function (event) {
         svg.attr('transform', event.transform)

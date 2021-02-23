@@ -1,11 +1,11 @@
 import './App.css'
-import { ForceGraph02App } from './D3ForceGraph02/ForceGraph02App'
+import { ForceGraph02aApp } from './D3ForceGraph02a/ForceGraph02aApp'
 
 function App() {
   return (
     <div className="App">
       <section>
-        <ForceGraph02App />
+        <ForceGraph02aApp />
       </section>
     </div>
   )

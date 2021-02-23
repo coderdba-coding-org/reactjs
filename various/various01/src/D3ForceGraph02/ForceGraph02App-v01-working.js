@@ -15,10 +15,6 @@ export function ForceGraph02App() {
     )
 */
 
-  const nodeHoverTooltip = React.useCallback((node) => {
-    return `<div>${node.name}</div>`
-  }, [])
-
   const containerRef = React.useRef(null)
 
   React.useEffect(() => {
