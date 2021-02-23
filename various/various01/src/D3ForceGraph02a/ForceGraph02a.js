@@ -12,7 +12,7 @@ export function ForceGraph02a(container){
     //const color = '#f6c3d0'
     const color = '#d6d3d0'
 
-     // taken from the other example (D3ForceGraph01)
+    // taken from the other example (D3ForceGraph01)
     const svg = d3
                   .select(container)
                   .append('svg')
