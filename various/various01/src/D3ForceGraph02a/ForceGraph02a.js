@@ -71,7 +71,7 @@ export function ForceGraph02a(container){
                     .attr('stroke', '#999')
                     .attr('stroke-opacity', 1.0)
                     .attr('stroke-width', (d) => Math.sqrt(d.value))
-                    
+
   /* Original code
   const link = svg
                     .append('g')
@@ -113,17 +113,20 @@ export function ForceGraph02a(container){
   node.append('title').text((d) => d.id)
   
   // start the simulation
-  // This positions the nodes with link's two ends with coordinates x1, y1 and x2, y2 
+
+  // this places all nodes one over the other
   //simulation.on('tick', () => {})
 
+  // This positions the nodes with link's two ends with coordinates x1, y1 and x2, y2 
   simulation.on('tick', () => {
-  link
-    .attr('x1', (d) => d.source.x)
-    .attr('y1', (d) => d.source.y)
-    .attr('x2', (d) => d.target.x)
-    .attr('y2', (d) => d.target.y)
+    
+      link
+          .attr('x1', (d) => d.source.x)
+          .attr('y1', (d) => d.source.y)
+          .attr('x2', (d) => d.target.x)
+          .attr('y2', (d) => d.target.y)
 
-  node.attr('cx', (d) => d.x).attr('cy', (d) => d.y)
+      node.attr('cx', (d) => d.x).attr('cy', (d) => d.y)
   })
 
                     
