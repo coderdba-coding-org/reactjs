@@ -16,7 +16,7 @@ export function ForceGraph02(container){
   const svg = d3
   .select(container)
   .append('svg')
-  .attr('viewBox', [-width / 10, -height / 10, width, height])
+  .attr('viewBox', [-width / 5, -height / 5, width, height])
   //.attr('viewbox', [20,20,200,200])
   .call(
     d3.zoom().on('zoom', function (event) {
@@ -54,12 +54,12 @@ node.append('title').text((d) => d.id)
 // the simulation
 const simulation = d3
                     .forceSimulation(nodes)
-                    .force('link', d3.forceLink(link).id((d) => d.id))
+                    .force('link', d3.forceLink(links).id((d) => d.id))
                     .force('charge', d3.forceManyBody())
-                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    //.force('center', d3.forceCenter(width / 2, height / 2))
 
 // start the simulation
-simulation.on('tick', () => {})
+//simulation.on('tick', () => {})
 
 simulation.on('tick', () => {
   link

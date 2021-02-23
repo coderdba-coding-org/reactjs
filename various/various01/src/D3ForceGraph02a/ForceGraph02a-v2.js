@@ -27,6 +27,8 @@ export function ForceGraph02a(container){
   // configure links with opacity, width etc
   // https://github.com/d3/d3-selection --> for selectAll and join
   // https://observablehq.com/@d3/selection-join --> for selectAll and join
+  
+  /* Original code
   const link = svg
                     .append('g')
                     .attr('stroke', '#999')
@@ -35,8 +37,22 @@ export function ForceGraph02a(container){
                     .data(links)
                     .join('line')
                     .attr('stroke-width', (d) => Math.sqrt(d.value))
+  */
+ 
+  // more legible and intutive code
+  const link = svg
+                    .append('g')
+                    .selectAll('line')
+                    .data(links)
+                    .join('line')
+                    .attr('stroke', '#999')
+                    .attr('stroke-opacity', 1.0)
+                    .attr('stroke-width', (d) => Math.sqrt(d.value))
+
 
   // configure nodes - joining 'circle' shapes
+
+  /* Original code
   const node = svg
                     .append('g')
                     .attr('stroke', '#fff')
@@ -46,7 +62,21 @@ export function ForceGraph02a(container){
                     .join('circle')
                     .attr('r', 5)
                     .attr('fill', color)
-  //.call(drag(simulation))
+                    //.call(drag(simulation))
+  */
+
+
+  // more legible code
+  const node = svg
+                    .append('g')
+                    .selectAll('circle')
+                    .data(nodes)
+                    .join('circle')
+                    .attr('r', 5)
+                    .attr('fill', color)
+                    .attr('stroke', '#aaa')
+                    .attr('stroke-width', 1.5)
+                    //.call(drag(simulation))
 
   // title for the nodes
   node.append('title').text((d) => d.id)
