@@ -54,12 +54,12 @@ node.append('title').text((d) => d.id)
 // the simulation
 const simulation = d3
                     .forceSimulation(nodes)
-                    .force('link', d3.forceLink(links).id((d) => d.id))
+                    .force('link', d3.forceLink(link).id((d) => d.id))
                     .force('charge', d3.forceManyBody())
                     .force('center', d3.forceCenter(width / 2, height / 2))
 
 // start the simulation
-//simulation.on('tick', () => {})
+simulation.on('tick', () => {})
 
 simulation.on('tick', () => {
   link

@@ -9,20 +9,21 @@ export function ForceGraph02(container){
     const height = 200
     const width = 200
   
-    //const color = '#f6c3d0'
-    const color = '#d6d3d0'
+    const color = '#f6c3d0'
+    //const color = '#d6d3d0'
 
      // taken from the other example
   const svg = d3
   .select(container)
   .append('svg')
-  .attr('viewBox', [-width / 10, -height / 10, width, height])
-  //.attr('viewbox', [20,20,200,200])
+  //.attr('viewBox', [-width / 10, -height / 10, width, height])
+  .attr('viewBox', [-50, -50, 200, 200])
   .call(
     d3.zoom().on('zoom', function (event) {
       svg.attr('transform', event.transform)
     })
   )
+
 
 // configure links with opacity, width etc
 // https://github.com/d3/d3-selection --> for selectAll and join
@@ -55,8 +56,6 @@ node.append('title').text((d) => d.id)
 const simulation = d3
                     .forceSimulation(nodes)
                     .force('link', d3.forceLink(links).id((d) => d.id))
-                    .force('charge', d3.forceManyBody())
-                    .force('center', d3.forceCenter(width / 2, height / 2))
 
 // start the simulation
 //simulation.on('tick', () => {})
@@ -70,6 +69,5 @@ simulation.on('tick', () => {
 
   node.attr('cx', (d) => d.x).attr('cy', (d) => d.y)
 })
-
                     
 }
