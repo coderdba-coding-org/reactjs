@@ -18,5 +18,8 @@ https://stackoverflow.com/questions/59734992/using-epoch-as-time-series-on-x-axi
 https://www.npmjs.com/package/react-timeseries-charts
 https://software.es.net/react-timeseries-charts/#/example/trend
 
-multiline: https://software.es.net/react-timeseries-charts/#/api/charts/ChartRow
-realtime with multiline: https://software.es.net/react-timeseries-charts/#/example/realtime
+multiline 'chartrow': https://software.es.net/react-timeseries-charts/#/api/charts/ChartRow
+multiline with realtime: https://software.es.net/react-timeseries-charts/#/example/realtime
+multiline trend: https://software.es.net/react-timeseries-charts/#/example/trend
+
+tutorial: https://medium.com/wolox/creating-a-chart-assembly-line-with-react-chartjs-2-7f0b07fd53e5
