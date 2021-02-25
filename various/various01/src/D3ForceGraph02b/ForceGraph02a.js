@@ -22,6 +22,10 @@ export function ForceGraph02a(container){
     //return '#f6c3d0'
   }
 
+  const nodeLabel = (d) => {
+    return d.name
+  }
+
   // the simulation
   const simulation = d3
                         .forceSimulation(nodes)
@@ -120,9 +124,44 @@ export function ForceGraph02a(container){
                     //.call(drag(simulation))
   */
 
+  // add labels
+  /* original code based on D3ForceGraph01
+  const label = svg
+                    .append('g')
+                    .attr('class', 'labels')
+                    .selectAll('text')
+                    .data(nodes)
+                    .enter()
+                    .append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'central')
+                    //.attr('class', (d) => `fa ${getClass(d)}`)
+                    .text((d) => nodeLabel(d))
+                    .call(drag(simulation))
+  */
+
   // title for the nodes
   node.append('title').text((d) => d.id)
+
+  // node label
+  node
+  .selectAll('circle')
+  .append('text')
+  .attr('dx', 12)
+  .attr('dy', '.35em')
+  //.text((d) => nodeLabel(d))
+  //.text(function(d) { return d.name });
   
+  // node image
+  node.append("image")
+      .attr("xlink:href", "https://github.com/favicon.ico")
+      .attr("x", -8)
+      .attr("y", -8)
+      .attr("width", 16)
+      .attr("height", 16);
+
+
+
   // start the simulation
 
   // this places all nodes one over the other
