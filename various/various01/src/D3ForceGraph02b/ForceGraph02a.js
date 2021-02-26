@@ -12,9 +12,9 @@ export function ForceGraph02a(container){
   //const color = '#f6c3d0'
   //const color = '#d6d3d0'
 
-  //const icon = (d) => {
-  //  return d.gender === 'male' ? '\uf222' : '\uf221'
-  //}
+  const icon = (d) => {
+    return d.id === 1 ? '\uf222' : '\uf221'
+  }
 
   // function to return color based on attribute of a data item like node or line
   const nodeColor = (d) => {
@@ -22,9 +22,14 @@ export function ForceGraph02a(container){
     //return '#f6c3d0'
   }
 
-  const nodeLabel = (d) => {
+  const nodeLabel0 = (d) => {
     return d.name
   }
+
+  const nodeLabel = (d) => {
+    return d.id === 1 ? "A" : "B"
+  }
+
 
   // the simulation
   const simulation = d3
@@ -98,7 +103,9 @@ export function ForceGraph02a(container){
   */
 
   // ADD NODES TO SVG: configure nodes - joining 'circle' shapes
+
   // more legible code
+  
   const node = svg
                     .append('g')
                     .selectAll('circle')
@@ -107,6 +114,7 @@ export function ForceGraph02a(container){
                     .attr('r', 5)
                     //.attr('fill', color)
                     .attr('fill', (d) => nodeColor(d))
+                    //.attr('fill-opacity', 0.0)
                     .attr('stroke', '#aaa')
                     .attr('stroke-width', 1.5)
                     .call(drag(simulation))
@@ -124,7 +132,23 @@ export function ForceGraph02a(container){
                     //.call(drag(simulation))
   */
 
-  // add labels
+  // add labels - NOT WORKING
+  // more legible code
+  const label = svg
+                    .append('g')
+                    .attr('class', 'labels')
+                    .selectAll('text')
+                    .data(nodes)
+                    .enter()
+                    .append('text')
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'central')
+                    //.attr('class', (d) => `fa ${getClass(d)}`)
+                    .text((d) => {
+                      return nodeLabel(d)
+                    })
+                    //.call(drag(simulation))
+  
   /* original code based on D3ForceGraph01
   const label = svg
                     .append('g')
@@ -143,7 +167,27 @@ export function ForceGraph02a(container){
   // title for the nodes
   node.append('title').text((d) => d.id)
 
-  // node label
+  /* this combination from http://bl.ocks.org/mbostock/2706022 DID NOT WORK
+  node.append("circle")
+  .attr("r", 8);
+
+  node.append("text")
+  .attr("x", 12)
+  .attr("dy", ".35em")
+  .text(function(d) { return d.name; });
+  */
+
+  // another way of adding labels
+  /* NOT WORKING
+  node.append("text")
+      //.attr("dx", ".10em")
+      .attr("x", 12)
+      .attr("dy", ".10em")
+      .text(function(d) {return d.name})
+  */
+
+  /*
+  // node label - NOT WORKING
   node
   .selectAll('circle')
   .append('text')
@@ -152,14 +196,14 @@ export function ForceGraph02a(container){
   //.text((d) => nodeLabel(d))
   //.text(function(d) { return d.name });
   
-  // node image
+  // node image - NOT WORKING
   node.append("image")
       .attr("xlink:href", "https://github.com/favicon.ico")
       .attr("x", -8)
       .attr("y", -8)
       .attr("width", 16)
       .attr("height", 16);
-
+  */
 
 
   // start the simulation

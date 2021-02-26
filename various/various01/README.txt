@@ -9,6 +9,9 @@ Install:
 https://www.npmjs.com/package/react-chartjs-2
 npm install --save react-chartjs-2 chart.js
 
+Line chart:
+https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/components/line.js
+
 Multiline Charts:
 https://mdbootstrap.com/docs/react/advanced/charts/
 https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/components/mix.js
@@ -27,3 +30,7 @@ multiline trend: https://software.es.net/react-timeseries-charts/#/example/trend
 
 tutorial: https://medium.com/wolox/creating-a-chart-assembly-line-with-react-chartjs-2-7f0b07fd53e5
 tutorial: https://www.newline.co/@dmitryrogozhny/quick-introduction-to-displaying-charts-in-react-with-chartjs-and-react-chartjs-2--a85b4e2e
+
+- D3
+select, add text etc: https://www.d3indepth.com/selections/
+force directed graph with labels: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8 (TRY THIS)
