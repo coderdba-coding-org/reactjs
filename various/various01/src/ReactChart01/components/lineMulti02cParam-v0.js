@@ -30,6 +30,8 @@ const { chartTitle, labels, todayData, yesterdayData, lastWeekData } = this.prop
 
 console.log(labels)
 console.log(todayData)
+//          backgroundColor: "rgba(225, 204, 130, .3)",
+
 
  this.state = {
     dataLine: {
@@ -45,6 +47,7 @@ console.log(todayData)
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: "miter",
+          //pointBorderColor: "rgb(205, 130, 158)",
           pointBorderColor: "rgb(255, 100, 0)",
           pointBackgroundColor: "rgb(255, 255, 255)",
           pointBorderWidth: 10,
@@ -102,7 +105,9 @@ console.log(todayData)
     }
   };
 
+
   //render() {
+
 
     return (
       <div>
