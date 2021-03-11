@@ -37,10 +37,15 @@ select, add text etc: https://www.d3indepth.com/selections/
 force directed graph with labels: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8 (TRY THIS)
 
 - AXIOS
+https://jasonwatmore.com/post/2020/07/17/react-axios-http-get-request-examples (TRY THIS - MANY MANY EXAMPLES)
 https://www.digitalocean.com/community/tutorials/react-axios-react (used in ReactChart01/components/AxiosList01.js)
 https://medium.com/@brettcelestre/storing-json-data-in-react-with-setstate-3b588b74dcce
 https://stackoverflow.com/questions/41194866/how-to-set-state-of-response-from-axios-in-react
 --  https://codesandbox.io/s/rm4pyq9m0o 
+https://rapidapi.com/blog/axios-react-api-tutorial/ (TRY THIS)
+https://javascript.plainenglish.io/what-is-axios-and-how-to-use-it-with-react-1470d19e1b83 (TRY THIS)
+https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/ (TRY THIS)
+https://designrevision.com/react-axios/ (TRY THIS)
 
 - JSON re-mapping
 https://stackoverflow.com/questions/52961988/mapping-a-json-const-in-react-js
