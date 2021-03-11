@@ -23,6 +23,7 @@ export function D3ForceGraph13(container){
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))
     .force("charge", d3.forceManyBody())
+    //.force("charge", d3.forceManyBody().strength(-80)) // to add repulsion strength
     .force("center", d3.forceCenter(width / 2, height / 2));
 
     const drag = (simulation) => {
@@ -38,11 +39,19 @@ export function D3ForceGraph13(container){
           event.subject.fy = event.y;
         }
         
+        
         function dragended(event) {
           if (!event.active) simulation.alphaTarget(0);
+          // to allow resetting position back
           event.subject.fx = null;
           event.subject.fy = null;
+
+          // to retain dragged position
+          //event.subject.fx = event.x;
+          //event.subject.fy = event.y;
+
         }
+
         
         return d3.drag()
             .on("start", dragstarted)
@@ -69,17 +78,30 @@ export function D3ForceGraph13(container){
    .join("line")
    .attr("stroke-width", d => Math.sqrt(d.value));
 
+   // both .node and circle work here
+   // comment out drag call to make the nodes not draggable
    const node = svg.append("g")
-   //.selectAll(".node")
-   .selectAll("circle")
+   .selectAll(".node")
+   //.selectAll("circle")
    .data(nodes)
    .join("g")
    .attr('class', 'node')
    .call(drag(simulation));
 
+   // make the nodes as circles (works)
+   /*
    node.append('circle')
    .attr("r", 5)
    .attr("fill", color);
+   */
+
+  // make the nodes show as rectangles (works)
+  node
+  .append("rect")
+  .attr("width", 5)
+  .attr("height", 5)
+  .attr("fill", color);
+  
 
    node.append("text")
    .text(function(d) {

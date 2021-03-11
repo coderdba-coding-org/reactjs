@@ -3,6 +3,9 @@ Reference:
 - Force graph with labels: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
     Same as: https://observablehq.com/@garciaguillermoa/force-directed-graph
 
+- To make nodes as square/rectangle: https://stackoverflow.com/questions/17853985/how-do-i-change-nodes-to-be-rectangles-instead-of-circles-in-a-d3-force-layout
+- D3 force graph - changing repulsion strength: https://stackoverflow.com/questions/39379299/how-do-you-customize-the-d3-link-strength-as-a-function-of-the-links-and-nodes-c
+
 - Force graph with labels for edge and arrows: http://bl.ocks.org/fancellu/2c782394602a93921faff74e594d1bb1
 
 ======================

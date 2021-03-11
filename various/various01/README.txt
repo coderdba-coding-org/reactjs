@@ -57,3 +57,8 @@ https://stackoverflow.com/questions/26505064/what-is-the-best-way-to-add-a-value
 https://www.robinwieruch.de/react-add-item-to-list --> 'concat' - add an item to a list (very good)
 https://kirstyburgoine.wordpress.com/2018/01/21/iterating-through-json-data-in-react/ --> looping through json
 https://javascript.plainenglish.io/how-to-loop-through-arrays-in-react-3eaa8a14445 --> looping through array
+
+- D3 add remove node: http://bl.ocks.org/tgk/6068367
+- D3 force graph - changing repulsion strength: https://stackoverflow.com/questions/39379299/how-do-you-customize-the-d3-link-strength-as-a-function-of-the-links-and-nodes-c
+- D3 To make nodes as square/rectangle: https://stackoverflow.com/questions/17853985/how-do-i-change-nodes-to-be-rectangles-instead-of-circles-in-a-d3-force-layout
+
