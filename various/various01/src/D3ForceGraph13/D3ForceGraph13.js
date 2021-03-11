@@ -1,25 +1,20 @@
-//https://observablehq.com/@d3/force-directed-graph
-//https://observablehq.com/@d3/learn-d3-data --> for FileAttachment
+//  Force graph with labels: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
+//    Same as: https://observablehq.com/@garciaguillermoa/force-directed-graph
 
 import * as d3 from 'd3'
-import { FileAttachment } from 'react'
 import data from './miserables.json'
 
-export function D3ForceGraph12(container){
+export function D3ForceGraph13(container){
 
-    const height = 200
-    const width = 200
+    const height = 600
+    const width  = 600
 
-    //const data = FileAttachment("miserables.json").json()
-    //const data = "./miserables.json"
-
-    /* original code - did not work
+    /* Original code - does not work
     const color = {
-        scale = d3.scaleOrdinal(d3.schemeCategory10)
-        return d => scale(d.group)
+        const scale = d3.scaleOrdinal(d3.schemeCategory10);
+        return d => scale(d.group);
     }
     */
-
     const color = '#f6c3d0'
 
     const links = data.links.map(d => Object.create(d));
@@ -61,48 +56,52 @@ export function D3ForceGraph12(container){
     .attr("viewBox", [0, 0, width, height]);
     */
 
-    const svg = d3
-    .select(container)
-    .append("svg")
-    .attr("viewBox", [0, 0, width, height]);
+   const svg = d3
+   .select(container)
+   .append("svg")
+   .attr("viewBox", [0, 0, width, height]);
 
-    const link = svg.append("g")
-    .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.6)
-    .selectAll("line")
-    .data(links)
-    .join("line")
-    .attr("stroke-width", d => Math.sqrt(d.value));
+   const link = svg.append("g")
+   .attr("stroke", "#999")
+   .attr("stroke-opacity", 0.6)
+   .selectAll("line")
+   .data(links)
+   .join("line")
+   .attr("stroke-width", d => Math.sqrt(d.value));
 
-    const node = svg.append("g")
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 1.5)
-    .selectAll("circle")
-    .data(nodes)
-    .join("circle")
-    .attr("r", 5)
-    .attr("fill", color)
-    .call(drag(simulation));
+   const node = svg.append("g")
+   //.selectAll(".node")
+   .selectAll("circle")
+   .data(nodes)
+   .join("g")
+   .attr('class', 'node')
+   .call(drag(simulation));
 
-    node.append("title")
-    .text(d => d.id);
+   node.append('circle')
+   .attr("r", 5)
+   .attr("fill", color);
 
-    simulation.on("tick", () => {
-        link
+   node.append("text")
+   .text(function(d) {
+     return d.id;
+   })
+   .style('fill', '#000')
+   .style('font-size', '12px')
+   .attr('x', 6)
+   .attr('y', 3);
+
+   simulation.on("tick", () => {
+    link
         .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
         .attr("x2", d => d.target.x)
         .attr("y2", d => d.target.y);
 
-        node
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
-    })
+    node
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
+   });
 
-    // this does not work
-    //invalidation.then(() => simulation.stop());
+   //invalidation.then(() => simulation.stop());
 
-    // works even when this is commented out
-    return svg.node();
-
+   return svg.node();
 }
