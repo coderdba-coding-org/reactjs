@@ -3,9 +3,9 @@
 //Also check: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
 
 import * as d3 from 'd3'
-import data from './miserables.json'
+import data from './data1.json'
 
-export function D3ForceGraph13(container){
+export function D3ForceGraph14(container){
 
     const height = 600
     const width  = 600
@@ -16,7 +16,17 @@ export function D3ForceGraph13(container){
         return d => scale(d.group);
     }
     */
+
+    // Hardcoded color
     const color = '#f6c3d0'
+
+    // Function color
+    /*
+    const color = (baseline, value) => {
+      console.log(baseline, value)
+      if (value > baseline) {return '#f6c3d0'}
+    }
+    */
 
     const links = data.links.map(d => Object.create(d));
     const nodes = data.nodes.map(d => Object.create(d));
@@ -40,7 +50,6 @@ export function D3ForceGraph13(container){
           event.subject.fy = event.y;
         }
         
-        
         function dragended(event) {
           if (!event.active) simulation.alphaTarget(0);
           // to allow resetting position back
@@ -52,7 +61,6 @@ export function D3ForceGraph13(container){
           //event.subject.fy = event.y;
 
         }
-
         
         return d3.drag()
             .on("start", dragstarted)
@@ -76,14 +84,14 @@ export function D3ForceGraph13(container){
    .attr("stroke-opacity", 0.6)
    .selectAll("line")
    .data(links)
-   .join("line")
-   .attr("stroke-width", d => Math.sqrt(d.value));
+   .join("line");
+   //.attr("stroke-width", d => Math.sqrt(d.value)); // commented this as this behavior is not needed
 
    // both .node and circle work here
    // comment out drag call to make the nodes not draggable
    const node = svg.append("g")
    .selectAll(".node")
-   //.selectAll("circle")
+   //.selectAll("circle") //will use rect down below instead of circle
    .data(nodes)
    .join("g")
    .attr('class', 'node')
@@ -96,15 +104,26 @@ export function D3ForceGraph13(container){
    .attr("fill", color);
    */
 
+  /* Using conditional sizing of rectangle down below
   // make the nodes show as rectangles (works)
   node
   .append("rect")
   .attr("width", 5)
   .attr("height", 5)
-  .attr("fill", color);
-  
+  .attr("fill", function(d) {if (d.value > d.baseline) {return '#f6c3d0'} })
+  //.attr("fill", color);
+  */
 
-   node.append("text")
+  // make the nodes show as rectangles (works)
+  node
+  .append("rect")
+  .attr("width", function(d) {if (d.group == 0) {return 15} else {return 5}})
+  .attr("height", function(d) {if (d.group == 0) {return 15} else {return 5}})
+  .attr("fill", function(d) {if (d.value > d.baseline) {return '#f6c3d0'} })
+  //.attr("fill", color);
+
+  node
+   .append("text")
    .text(function(d) {
      return d.id;
    })
@@ -113,7 +132,7 @@ export function D3ForceGraph13(container){
    .attr('x', 6)
    .attr('y', 3);
 
-   simulation.on("tick", () => {
+  simulation.on("tick", () => {
     link
         .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
