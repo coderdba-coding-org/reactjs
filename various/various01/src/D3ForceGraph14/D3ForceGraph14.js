@@ -19,6 +19,7 @@ export function D3ForceGraph14(container){
 
     // Hardcoded color
     const color = '#f6c3d0'
+    //const color = '#ff0000'
 
     // Function color
     /*
@@ -119,7 +120,7 @@ export function D3ForceGraph14(container){
   .append("rect")
   .attr("width", function(d) {if (d.group == 0) {return 15} else {return 5}})
   .attr("height", function(d) {if (d.group == 0) {return 15} else {return 5}})
-  .attr("fill", function(d) {if (d.value > d.baseline) {return '#f6c3d0'} })
+  .attr("fill", function(d) {if (d.value > d.baseline) {return '#ff0000'} })
   //.attr("fill", color);
 
   node

@@ -1,0 +1,38 @@
+-- I guess this was installed with nvm v14.15.4
+-- But, npm start is working for both nvm v12.14.0 and v14.15.4
+
+various01 $ nvm ls
+->     v12.14.0
+       v12.14.1
+       v14.15.4
+         system
+default -> 12.14.0 (-> v12.14.0)
+node -> stable (-> v14.15.4) (default)
+stable -> 14.15 (-> v14.15.4) (default)
+iojs -> N/A (default)
+unstable -> N/A (default)
+lts/* -> lts/fermium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.23.3 (-> N/A)
+lts/erbium -> v12.20.2 (-> N/A)
+lts/fermium -> v14.15.5 (-> N/A)
+
+various01$ nvm ls
+       v12.14.0
+       v12.14.1
+->     v14.15.4
+         system
+default -> 12.14.0 (-> v12.14.0)
+node -> stable (-> v14.15.4) (default)
+stable -> 14.15 (-> v14.15.4) (default)
+iojs -> N/A (default)
+unstable -> N/A (default)
+lts/* -> lts/fermium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.23.3 (-> N/A)
+lts/erbium -> v12.20.2 (-> N/A)
+lts/fermium -> v14.15.5 (-> N/A)

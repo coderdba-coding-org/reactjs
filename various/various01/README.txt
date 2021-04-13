@@ -1,3 +1,7 @@
+-- NVM
+-- I guess this was installed with nvm v12.14.0
+-- But, npm start is working for both nvm v12.14.0 and v14.15.4
+
 -- Needs some kind of fix
 found 1356 vulnerabilities (1343 low, 10 moderate, 3 high)
   run `npm audit fix` to fix them, or `npm audit` for details
