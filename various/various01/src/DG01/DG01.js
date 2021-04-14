@@ -42,17 +42,17 @@ export function DG01(container){
     .catch(console.log)
     */
     //axios.get(encodedURI, { headers: { Authorization: '' } })
-    axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
-    //axios.get('http://localhost:8080/getnodelistmetric')
-    //.then(response => response.json())
-    .then(response => { 
-                         console.log(response.headers())
-                         response.json()
-                        }
-         )
-    .then(dataNodesFromApi)
+    //axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
+    
+    console.log('calling http://localhost:8080/getnodelistmetric')
+
+    fetch('http://localhost:8080/getnodelistmetric') 
+    .then(res => res.json())
+    .then(console.log)
+    //.then(dataNodesFromApi)
     .catch(console.log)
-    console.log(dataNodesFromApi)
+
+    //console.log(dataNodesFromApi)
     //let dataNodes = dataNodesFromApi
 
     //const links = data.links.map(d => Object.create(d));
