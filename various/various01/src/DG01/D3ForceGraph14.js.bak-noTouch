@@ -4,8 +4,6 @@
 
 import * as d3 from 'd3'
 import data from './data1.json'
-import dataNodes from './data1Nodes.json'
-import dataLinks from './data1Links.json'
 
 export function D3ForceGraph14(container){
 
@@ -31,10 +29,8 @@ export function D3ForceGraph14(container){
     }
     */
 
-    //const links = data.links.map(d => Object.create(d));
-    //const nodes = data.nodes.map(d => Object.create(d));
-    const links = dataLinks.links.map(d => Object.create(d));
-    const nodes = dataNodes.nodes.map(d => Object.create(d));
+    const links = data.links.map(d => Object.create(d));
+    const nodes = data.nodes.map(d => Object.create(d));
 
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))

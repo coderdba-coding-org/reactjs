@@ -7,7 +7,7 @@ import data from './data1.json'
 import dataNodes from './data1Nodes.json'
 import dataLinks from './data1Links.json'
 
-export function D3ForceGraph14(container){
+export function DG01(container){
 
     const height = 600
     const width  = 600
