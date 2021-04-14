@@ -3,6 +3,8 @@
 //Also check: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
 
 import * as d3 from 'd3'
+import axios from 'axios'
+
 import data from './data1.json'
 import dataNodes from './data1Nodes.json'
 import dataLinks from './data1Links.json'
@@ -30,6 +32,28 @@ export function DG01(container){
       if (value > baseline) {return '#f6c3d0'}
     }
     */
+
+    // obtain dataNodes by calling API that generates nodes with metrics
+    let dataNodesFromApi
+    /*
+    fetch('http://localhost:8080/getnodelistmetric') 
+    .then(res => res.json())
+    .then(dataNodesFromApi)
+    .catch(console.log)
+    */
+    //axios.get(encodedURI, { headers: { Authorization: '' } })
+    axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
+    //axios.get('http://localhost:8080/getnodelistmetric')
+    //.then(response => response.json())
+    .then(response => { 
+                         console.log(response.headers())
+                         response.json()
+                        }
+         )
+    .then(dataNodesFromApi)
+    .catch(console.log)
+    console.log(dataNodesFromApi)
+    //let dataNodes = dataNodesFromApi
 
     //const links = data.links.map(d => Object.create(d));
     //const nodes = data.nodes.map(d => Object.create(d));
