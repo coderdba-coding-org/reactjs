@@ -46,8 +46,8 @@ export function DG01(container){
     
     console.log('Calling http://localhost:8080/getnodelistmetric')
 
-    /* This fetch does not help because it goes asynch background
     fetch('http://localhost:8080/getnodelistmetric') 
+    //await fetch('http://localhost:8080/getnodelistmetric') 
     .then(res => res.json())
     //.then(console.log)
     .then(dataNodesFromApi)
@@ -57,17 +57,7 @@ export function DG01(container){
     console.log('Loggig the output')
     console.log(dataNodesFromApi)
     //let dataNodes = dataNodesFromApi
-    */
 
-   const request = async () => {
-    const response = await fetch('http://localhost:8080/getnodelistmetric');
-    const json = await response.json();
-    console.log(json);
-  
-   //}
-  //request();
-
-    let dataNodes = json
     //const links = data.links.map(d => Object.create(d));
     //const nodes = data.nodes.map(d => Object.create(d));
     const links = dataLinks.links.map(d => Object.create(d));
@@ -188,7 +178,4 @@ export function DG01(container){
    //invalidation.then(() => simulation.stop());
 
    return svg.node();
-
-  }
-  request();
 }
