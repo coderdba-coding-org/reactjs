@@ -61,13 +61,15 @@ export function DG01(container){
 
    const request = async () => {
     const response = await fetch('http://localhost:8080/getnodelistmetric');
-    const json = await response.json();
-    console.log(json);
+    const responseJson = await response.json();
+    console.log(responseJson);
   
+   // Put these towards the end - enclosing the network render code also
+   // otherwise request will run in the background and next steps kick in
    //}
-  //request();
+   //request();
 
-    let dataNodes = json
+    let dataNodes = responseJson
     //const links = data.links.map(d => Object.create(d));
     //const nodes = data.nodes.map(d => Object.create(d));
     const links = dataLinks.links.map(d => Object.create(d));
