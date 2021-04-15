@@ -11,8 +11,8 @@ import dataLinks from './data1Links.json'
 
 export function DG01(container){
 
-    const height = 600  //600
-    const width  = 800  //600
+    const height = 600
+    const width  = 600
 
     /* Original code - does not work
     const color = {
@@ -46,8 +46,8 @@ export function DG01(container){
     
     console.log('Calling http://localhost:8080/getnodelistmetric')
 
-    /* This fetch does not help because it goes asynch background
     fetch('http://localhost:8080/getnodelistmetric') 
+    //await fetch('http://localhost:8080/getnodelistmetric') 
     .then(res => res.json())
     //.then(console.log)
     .then(dataNodesFromApi)
@@ -57,19 +57,7 @@ export function DG01(container){
     console.log('Loggig the output')
     console.log(dataNodesFromApi)
     //let dataNodes = dataNodesFromApi
-    */
 
-   const request = async () => {
-    const response = await fetch('http://localhost:8080/getnodelistmetric');
-    const responseJson = await response.json();
-    console.log(responseJson);
-  
-   // Put these towards the end - enclosing the network render code also
-   // otherwise request will run in the background and next steps kick in
-   //}
-   //request();
-
-    let dataNodes = responseJson
     //const links = data.links.map(d => Object.create(d));
     //const nodes = data.nodes.map(d => Object.create(d));
     const links = dataLinks.links.map(d => Object.create(d));
@@ -78,7 +66,7 @@ export function DG01(container){
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))
     .force("charge", d3.forceManyBody())
-    .force("charge", d3.forceManyBody().strength(-100)) // to add repulsion strength
+    //.force("charge", d3.forceManyBody().strength(-80)) // to add repulsion strength
     .force("center", d3.forceCenter(width / 2, height / 2));
 
     const drag = (simulation) => {
@@ -169,7 +157,7 @@ export function DG01(container){
   node
    .append("text")
    .text(function(d) {
-     return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")";
+     return d.id;
    })
    .style('fill', '#000')
    .style('font-size', '12px')
@@ -190,7 +178,4 @@ export function DG01(container){
    //invalidation.then(() => simulation.stop());
 
    return svg.node();
-
-  }
-  request();
 }
