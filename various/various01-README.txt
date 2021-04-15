@@ -10,6 +10,11 @@ TO TRY
 ---------------
 D3
 ---------------
+D3 Force doc: https://d3-wiki.readthedocs.io/zh_CN/master/Force-Layout/
+
+D3 Force - with mouseover  - simple with fixed width, no drag:
+http://bl.ocks.org/mbostock/2706022
+
 D3: Time Series Charts with React, Redux and D3
 https://blog.serverdensity.com/time-series-charts-react-redux-d3/
 

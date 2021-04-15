@@ -66,3 +66,4 @@ https://javascript.plainenglish.io/how-to-loop-through-arrays-in-react-3eaa8a144
 - D3 force graph - changing repulsion strength: https://stackoverflow.com/questions/39379299/how-do-you-customize-the-d3-link-strength-as-a-function-of-the-links-and-nodes-c
 - D3 To make nodes as square/rectangle: https://stackoverflow.com/questions/17853985/how-do-i-change-nodes-to-be-rectangles-instead-of-circles-in-a-d3-force-layout
 
+- D3 doc force(): https://d3-wiki.readthedocs.io/zh_CN/master/Force-Layout/
