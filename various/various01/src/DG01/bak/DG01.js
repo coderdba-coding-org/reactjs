@@ -112,6 +112,38 @@ export function DG01(container){
             .on("end", dragended);
     }
 
+    // Mouseover function
+    function mouseover() {
+      d3.select(this).select("text").transition()
+          .duration(750)
+          .text(function(d) {
+            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")" + " Is it OK?";
+          })
+     }
+
+    function mouseover1() {
+      d3.select(this).select("rect").transition()
+          .duration(750)
+          .attr("width", 15)
+          .attr("height", 15)
+     }
+    
+     // Mouseout function
+     function mouseout() {
+      d3.select(this).select("text").transition()
+          .duration(750)
+          .text(function(d) {
+            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")";
+          })
+     }
+
+     function mouseout1() {
+      d3.select(this).select("rect").transition()
+          .duration(750)
+          .attr("width", 5)
+          .attr("height", 5)
+     }
+
     /* Original code: 'create' does not work here - use append as we need to select the container 
     const svg = d3
     .create("svg")
@@ -121,7 +153,8 @@ export function DG01(container){
    const svg = d3
    .select(container)
    .append("svg")
-   .attr("viewBox", [0, 0, width, height]);
+   .attr("viewBox", [0, 0, width, height])
+   //.attr("fill", "steelblue");
 
    const link = svg.append("g")
    .attr("stroke", "#999")
@@ -139,7 +172,9 @@ export function DG01(container){
    .data(nodes)
    .join("g")
    .attr('class', 'node')
-   .call(drag(simulation));
+   .call(drag(simulation))
+   .on("mouseover", mouseover)
+   .on("mouseout", mouseout);
 
    // make the nodes as circles (works)
    /*
@@ -164,7 +199,7 @@ export function DG01(container){
   .attr("width", function(d) {if (d.group == 0) {return 15} else {return 5}})
   .attr("height", function(d) {if (d.group == 0) {return 15} else {return 5}})
   .attr("fill", function(d) {if (d.value > d.baseline) {return '#ff0000'} })
-  //.attr("fill", color);
+  //.attr("fill", color)
 
   node
    .append("text")
