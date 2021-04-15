@@ -5,9 +5,6 @@
       {"source": "MyApp", "target": "Kafka", "value": 10},
       {"source": "MyApp", "target": "RabbitMQ", "value": 10},
       {"source": "OrderCheckCallCloudVM", "target": "OraDB", "value": 10},
-      {"source": "OrderCheckCall", "target": "OrderCheckCallCloudVM", "value": 1},
-      {"source": "Router", "target": "Kafka", "value": 1},
-      {"source": "Router", "target": "OrderCheckCallCloudVM", "value": 1},
-      {"source": "Router", "target": "RabbitMQ", "value": 1}
+      {"source": "OrderCheckCall", "target": "OrderCheckCallCloudVM", "value": 1}
     ]
   }  

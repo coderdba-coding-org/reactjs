@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <section>
-        <h1>The Graph</h1>
+        <h1>MyApp Hot Spots!!</h1>
         <DG01App />
       </section>
     </div>

@@ -78,8 +78,8 @@ export function DG01(container){
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))
     .force("charge", d3.forceManyBody())
-    .force("charge", d3.forceManyBody().strength(-100)) // to add repulsion strength
-    .force("center", d3.forceCenter(width / 2, height / 2));
+    .force("charge", d3.forceManyBody().strength(-800)) // to add repulsion strength
+    .force("center", d3.forceCenter(width / 2, height / 4));
 
     const drag = (simulation) => {
   
@@ -117,7 +117,7 @@ export function DG01(container){
       d3.select(this).select("text").transition()
           .duration(750)
           .text(function(d) {
-            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")" + " Is it OK?";
+            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")" + " ---- Is it OK?";
           })
      }
 

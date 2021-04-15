@@ -4,13 +4,11 @@
 
 import * as d3 from 'd3'
 import data from './data1.json'
-import dataNodes from './data1Nodes.json'
-import dataLinks from './data1Links.json'
 
 export function D3ForceGraph14(container){
 
     const height = 600
-    const width  = 800
+    const width  = 600
 
     /* Original code - does not work
     const color = {
@@ -31,16 +29,14 @@ export function D3ForceGraph14(container){
     }
     */
 
-    //const links = data.links.map(d => Object.create(d));
-    //const nodes = data.nodes.map(d => Object.create(d));
-    const links = dataLinks.links.map(d => Object.create(d));
-    const nodes = dataNodes.nodes.map(d => Object.create(d));
+    const links = data.links.map(d => Object.create(d));
+    const nodes = data.nodes.map(d => Object.create(d));
 
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))
-    //.force("charge", d3.forceManyBody())
-    .force("charge", d3.forceManyBody().strength(-800)) // to add repulsion strength
-    .force("center", d3.forceCenter(width / 2, height / 4));
+    .force("charge", d3.forceManyBody())
+    //.force("charge", d3.forceManyBody().strength(-80)) // to add repulsion strength
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
     const drag = (simulation) => {
   
@@ -58,12 +54,12 @@ export function D3ForceGraph14(container){
         function dragended(event) {
           if (!event.active) simulation.alphaTarget(0);
           // to allow resetting position back
-          //event.subject.fx = null;
-          //event.subject.fy = null;
+          event.subject.fx = null;
+          event.subject.fy = null;
 
           // to retain dragged position
-          event.subject.fx = event.x;
-          event.subject.fy = event.y;
+          //event.subject.fx = event.x;
+          //event.subject.fy = event.y;
 
         }
         
@@ -72,24 +68,6 @@ export function D3ForceGraph14(container){
             .on("drag", dragged)
             .on("end", dragended);
     }
-
-    // Mouseover function
-    function mouseover() {
-      d3.select(this).select("text").transition()
-          .duration(750)
-          .text(function(d) {
-            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")" + " ---- Is it OK?";
-          })
-     }
-
-     // Mouseout function
-     function mouseout() {
-      d3.select(this).select("text").transition()
-          .duration(750)
-          .text(function(d) {
-            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")";
-          })
-     }
 
     /* Original code: 'create' does not work here - use append as we need to select the container 
     const svg = d3
@@ -118,9 +96,7 @@ export function D3ForceGraph14(container){
    .data(nodes)
    .join("g")
    .attr('class', 'node')
-   .call(drag(simulation))
-   .on("mouseover", mouseover)
-   .on("mouseout", mouseout);
+   .call(drag(simulation));
 
    // make the nodes as circles (works)
    /*
@@ -150,7 +126,7 @@ export function D3ForceGraph14(container){
   node
    .append("text")
    .text(function(d) {
-     return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")";;
+     return d.id;
    })
    .style('fill', '#000')
    .style('font-size', '12px')
