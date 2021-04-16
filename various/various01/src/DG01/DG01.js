@@ -97,12 +97,12 @@ export function DG01(container){
         function dragended(event) {
           if (!event.active) simulation.alphaTarget(0);
           // to allow resetting position back
-          event.subject.fx = null;
-          event.subject.fy = null;
+          //event.subject.fx = null;
+          //event.subject.fy = null;
 
           // to retain dragged position
-          //event.subject.fx = event.x;
-          //event.subject.fy = event.y;
+          event.subject.fx = event.x;
+          event.subject.fy = event.y;
 
         }
         
@@ -154,7 +154,7 @@ export function DG01(container){
    .select(container)
    .append("svg")
    .attr("viewBox", [0, 0, width, height])
-   //.attr("fill", "steelblue");
+   .attr("fill", "steelblue");
 
    const link = svg.append("g")
    .attr("stroke", "#999")

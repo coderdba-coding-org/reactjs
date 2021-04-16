@@ -100,7 +100,8 @@ export function D3ForceGraph14(container){
    const svg = d3
    .select(container)
    .append("svg")
-   .attr("viewBox", [0, 0, width, height]);
+   .attr("viewBox", [0, 0, width, height])
+   .attr("fill", "steelblue");
 
    const link = svg.append("g")
    .attr("stroke", "#999")
