@@ -60,7 +60,8 @@ export function DG01(container){
     */
 
    const request = async () => {
-    const response = await fetch('http://localhost:8080/getnodelistmetric');
+    //const response = await fetch('http://localhost:8080/getnodelistmetric');
+    const response = await fetch('http://localhost:8081/network/myApp');
     const responseJson = await response.json();
     console.log(responseJson);
   
