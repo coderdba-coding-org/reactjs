@@ -1,1 +1,2 @@
-Calling API: https://pusher.com/tutorials/consume-restful-api-react
+Calling API with 'fetch': https://pusher.com/tutorials/consume-restful-api-react
+'Await' for async calling API with 'fetch': https://www.valentinog.com/blog/await-react/
