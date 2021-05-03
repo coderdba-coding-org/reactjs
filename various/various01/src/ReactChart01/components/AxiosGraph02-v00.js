@@ -6,6 +6,7 @@ import { Line } from "react-chartjs-2"
 export default class AxiosGraph01 extends React.Component {
   
   state = {
+    nodeName:   "",
     metricName: "",
     labels: [],
     values: []
@@ -19,28 +20,29 @@ export default class AxiosGraph01 extends React.Component {
         const dataGotten = res.data;
 
         // set the state that will hold the whole data
+        this.setState({nodeName: dataGotten.node_name})
         this.setState({metricName: dataGotten.metric_name})
         this.setState({labels: dataGotten.labels})
         this.setState({values: dataGotten.values})
 
-        console.log("state metricName")
+        console.log("state nodeName:")
+        console.log(this.state.nodeName)
+        console.log("state metricName:")
         console.log(this.state.metricName)
-        console.log("state labels")
+        console.log("state labels:")
         console.log(this.state.labels)
-        console.log("state values")
+        console.log("state values:")
         console.log(this.state.values)
       });
   }
 
   render() {
-
-      const labels = this.state.personNames
       
       const data = {
         labels: this.state.labels,
         datasets: [
           {
-            label: this.state.metricName,
+            label: this.state.metricName + " : for " + this.state.nodeName,
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
@@ -65,7 +67,7 @@ export default class AxiosGraph01 extends React.Component {
 
      return (
       <div>
-        <h2>Axios Line Example</h2>
+        <h2>Detailed Metric: {this.state.metricName} - for {this.state.nodeName} </h2>
         <Line data={data} />
       </div>
     )
