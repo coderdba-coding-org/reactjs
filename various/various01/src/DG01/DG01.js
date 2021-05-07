@@ -44,7 +44,7 @@ export function DG01(container){
     //axios.get(encodedURI, { headers: { Authorization: '' } })
     //axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
     
-    console.log('Calling http://localhost:8080/getnodelistmetric')
+    console.log('Calling http://localhost:808X/<to get network metric>')
 
     /* This fetch does not help because it goes asynch background
     fetch('http://localhost:8080/getnodelistmetric') 

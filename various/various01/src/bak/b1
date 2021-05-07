@@ -1,0 +1,2 @@
+rm App.js
+ln -s App.js.Events01.Button01.js App.js
