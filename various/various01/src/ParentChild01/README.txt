@@ -1,7 +1,7 @@
 Parent01/Child01: How to Pass Data between React Components: https://www.pluralsight.com/guides/how-to-pass-data-between-react-components
                     --> From Parent to Child Using Props
 
-Parent01/Child01: How to Pass Data between React Components: https://www.pluralsight.com/guides/how-to-pass-data-between-react-components
+Parent02/Child02: How to Pass Data between React Components: https://www.pluralsight.com/guides/how-to-pass-data-between-react-components
                     --> From Child to Parent Using Callbacks
                     HOWEVER,THAT EXAMPLE WAS INCOMPLETE - SO, USE https://medium.com/@nipunadilhara/passing-data-between-different-components-using-react-c8e27319ee69
 

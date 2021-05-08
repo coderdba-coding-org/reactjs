@@ -11,7 +11,7 @@ export class Parent extends React.Component {
     state = { message: "" }
 
     callbackFunction = (childData) => {
-          console.log("Data from child: " + childData)
+          //console.log("Data from child: " + childData)
           this.setState({message: childData})
     }
     

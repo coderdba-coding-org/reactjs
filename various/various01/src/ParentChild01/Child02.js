@@ -12,6 +12,8 @@ export default class Child02 extends React.Component{
     // NOTE NOTE: sendData actually is calling inside it the parent's function here!!
     //              --> that function's name was passed as property from parent!!
     sendData = () => {
+        // "parentCallback" is the prop sent by parent 
+        // - and it has the parent function name internally
         this.props.parentCallback("Hey Popsie, How’s it going?");
     }
 
