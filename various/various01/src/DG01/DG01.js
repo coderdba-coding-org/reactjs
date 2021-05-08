@@ -3,10 +3,10 @@
 //Also check: https://bl.ocks.org/heybignick/3faf257bbbbc7743bb72310d03b86ee8
 
 import * as d3 from 'd3'
-import axios from 'axios'
+//import axios from 'axios'
 
-import data from './data1.json'
-import dataNodes from './data1Nodes.json'
+//import data from './data1.json'
+//import dataNodes from './data1Nodes.json'
 import dataLinks from './data1Links.json'
 
 export function DG01(container){
@@ -44,7 +44,7 @@ export function DG01(container){
     //axios.get(encodedURI, { headers: { Authorization: '' } })
     //axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
     
-    console.log('Calling http://localhost:808X/<to get network metric>')
+    console.log('Calling http://localhost:808X/<to get network metric> ')
 
     /* This fetch does not help because it goes asynch background
     fetch('http://localhost:8080/getnodelistmetric') 
@@ -151,7 +151,6 @@ export function DG01(container){
       var width  = 30
       var height = 30
 
-      // this is printing null
       //console.log("d3 this attr width: " + d3.select(this.firstChild).attr("width"))
 
       if (d3.select(this.firstChild).attr("width") == 20) {
