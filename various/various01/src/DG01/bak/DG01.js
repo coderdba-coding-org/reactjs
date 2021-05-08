@@ -44,7 +44,7 @@ export function DG01(container){
     //axios.get(encodedURI, { headers: { Authorization: '' } })
     //axios.get('http://localhost:8080/getnodelistmetric', { headers: { Authorization: '' } })
     
-    console.log('Calling http://localhost:8080/getnodelistmetric')
+    console.log('Calling http://localhost:808X/<to get network metric>')
 
     /* This fetch does not help because it goes asynch background
     fetch('http://localhost:8080/getnodelistmetric') 
@@ -145,6 +145,50 @@ export function DG01(container){
           .attr("height", 5)
      }
 
+     // mouse on-click
+     function mouseclick() {
+
+      var width  = 30
+      var height = 30
+
+      // this is printing null
+      //console.log("d3 this attr width: " + d3.select(this.firstChild).attr("width"))
+
+      if (d3.select(this.firstChild).attr("width") == 20) {
+        width  = 20
+        height = 20
+      } else {
+      
+        if (d3.select(this.firstChild).attr("width") == 15) {
+          width  = 5
+          height = 5
+        } else {
+           width  = 15
+          height = 15
+        }
+      }
+
+      d3.select(this).select("rect").transition()
+          .duration(750)
+          .attr("width", width)
+          .attr("height", height)
+     }
+
+     function mouseclickOrig() {
+      d3.select(this).select("rect").transition()
+          .duration(750)
+          .attr("width", 15)
+          .attr("height", 15)
+     }
+
+     // Mouseout function
+     function mouseout() {
+      d3.select(this).select("text").transition()
+          .duration(750)
+          .text(function(d) {
+            return d.id + ", metric(baseline):" + d.value + "(" + d.baseline + ")";
+          })
+     }
     /* Original code: 'create' does not work here - use append as we need to select the container 
     const svg = d3
     .create("svg")
@@ -175,7 +219,8 @@ export function DG01(container){
    .attr('class', 'node')
    .call(drag(simulation))
    .on("mouseover", mouseover)
-   .on("mouseout", mouseout);
+   .on("mouseout", mouseout)
+   .on("click", mouseclick);
 
    // make the nodes as circles (works)
    /*
@@ -197,8 +242,8 @@ export function DG01(container){
   // make the nodes show as rectangles (works)
   node
   .append("rect")
-  .attr("width", function(d) {if (d.group == 0) {return 15} else {return 5}})
-  .attr("height", function(d) {if (d.group == 0) {return 15} else {return 5}})
+  .attr("width", function(d) {if (d.group == 0) {return 20} else {return 5}})
+  .attr("height", function(d) {if (d.group == 0) {return 20} else {return 5}})
   .attr("fill", function(d) {if (d.value > d.baseline) {return '#ff0000'} })
   //.attr("fill", color)
 
