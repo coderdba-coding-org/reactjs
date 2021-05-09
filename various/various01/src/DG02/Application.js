@@ -1,7 +1,7 @@
 // Return everything that needs to be displayed
 // - One or more components
 
-import React from 'react'
+import React, { useRef }  from 'react'
 
 import { NetworkGraph } from './NetworkGraph'
 
