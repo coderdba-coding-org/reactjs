@@ -14,9 +14,11 @@ import { DGApp } from './DGApp'
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('myApp');
+    const [app, setApp] = useState('myApp2');
     const [networkJson, setNetworkJson] = useState();
-    const [networkSVG, setNetworkSVG] = useState();
+    
+    // setting this may try a re-render - need to check
+    //const [networkSVG, setNetworkSVG] = useState();
 
     // functions to handle form/button events
     const handleChange = event => setApp(event.target.value);
@@ -40,25 +42,29 @@ export default function Main(){
         event.preventDefault()
     }
 
-    /* Cannot call here? Use DGApp.js
-    const GenerateNetworkDiagram = () => {
-        const containerRef = React.useRef("someArbitraryRef")
-        React.useEffect(() => {DG(containerRef.current, app) }, [])
-        return (<div ref={containerRef} />)
-    }
-    */
-
     // use this with the "return 1" below
     const DisplayNetworkDiagram = () => {
         console.log("DisplayNetworkDiagram(): App is: ", app)
+        // setting this may try a re-render - need to check
         //setNetworkSVG(DGApp(app))
-        return(DGApp(app))
+        
+        if (app == "myApp") {
+            return(DGApp(app))
+        } else {
+            return ("Cannot generate network diagram for this app: " + app )
+        }
     }
 
     const GenerateNetworkDiagram = () => {
-        console.log("GenerateNetworkDiagram(): App is: ", app)
+        //console.log("GenerateNetworkDiagram(): App is: ", app)
+        // setting this may try a re-render - need to check
         //setNetworkSVG(DGApp(app))
-        return(DGApp(app))
+
+        if (app == "myApp") {
+            return(DGApp(app))
+        } else {
+            return ("")
+        }
     }
 
     /* return 1: This works when the state 'app' defaults to 'myApp' */
