@@ -10,6 +10,7 @@ const State01b = ({greetingIn}) => {
       // THIS WORKS
       // to call event-handler, we an define another function and assign to a constant and use it
       const handleChange = event => setGreeting(event.target.value);
+      
       return (
         <div>
           <h1>{greeting}</h1>

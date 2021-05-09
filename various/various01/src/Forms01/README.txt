@@ -1,0 +1,1 @@
+In 'function' type of components got warning 'event' is deprecated - so, used 'e'
