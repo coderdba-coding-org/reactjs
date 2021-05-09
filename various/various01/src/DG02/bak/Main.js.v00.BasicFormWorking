@@ -9,15 +9,13 @@
 // This button click will bring the charts for only the hot nodes
 
 import React, { useState } from 'react';
-import { DGApp } from './DGApp'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('myApp');
+    const [app, setApp] = useState('chooseAnApp');
     const [networkJson, setNetworkJson] = useState();
 
-    // functions to handle form/button events
     const handleChange = event => setApp(event.target.value);
     const handleSubmit = event => {
         if (app == 'chooseAnApp') {
@@ -37,33 +35,8 @@ export default function Main(){
             alert('You have chosen (re-checking): ' + app);
         }
         event.preventDefault()
-    }
+      }
 
-    /* Cannot call here? Use DGApp.js
-    const GenerateNetworkDiagram = () => {
-        const containerRef = React.useRef("someArbitraryRef")
-        React.useEffect(() => {DG(containerRef.current, app) }, [])
-        return (<div ref={containerRef} />)
-    }
-    */
-
-    const GenerateNetworkDiagram = () => {
-        console.log("GenerateNetworkDiagram(): App is: ", app)
-        return(DGApp(app))
-    }
-
-    /* This works when the state 'app' defaults to 'myApp'
-    return (
-        <div className="App">
-        <section>
-          <h1>MyApp Hot Spots!!</h1>
-          <GenerateNetworkDiagram />
-        </section>
-      </div>
-      )
-    */
-
-    
     return (
         <section>
           <div>
@@ -84,13 +57,7 @@ export default function Main(){
           <div>
             <button onClick={handleClick}>Click to Re-check</button>
           </div>
-          <div>
-            <button onClick={GenerateNetworkDiagram}>Click for Network Diagram</button>
-          </div>
         </section>
       )
-    
 
-      //<button onClick={DGApp(app)}>Click for Network Diagram</button>
-      //<button onClick={GenerateNetworkDiagram}>Click for Network Diagram</button>
 }
