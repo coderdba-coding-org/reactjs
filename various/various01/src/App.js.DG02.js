@@ -1,12 +1,12 @@
 import './App.css'
-import { Application } from './DG02/Application'
+import { DG02App } from './DG02/DG02App'
 
 function App() {
   return (
     <div className="App">
       <section>
         <h1>Hot Spots</h1>
-        <Application />
+        <DG02App />
         </section>
     </div>
   )

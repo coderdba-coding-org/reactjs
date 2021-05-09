@@ -1,0 +1,52 @@
+{
+  "nodes": [
+      {
+          "id": "MyApp",
+          "group": 0,
+          "baseline": 10,
+          "value": 269
+      },
+      {
+          "id": "OrderCheckCall",
+          "group": 1,
+          "baseline": 15,
+          "value": 118333776.94859274
+      },
+      {
+          "id": "OraDB",
+          "group": 1,
+          "baseline": 20,
+          "value": 269
+      },
+      {
+          "id": "Kafka",
+          "group": 1,
+          "baseline": 2.8,
+          "value": 269
+      },
+      {
+          "id": "RabbitMQ",
+          "group": 1,
+          "baseline": 2,
+          "value": 269
+      },
+      {
+          "id": "MyAppCloudVM",
+          "group": 1,
+          "baseline": 1,
+          "value": 269
+      },
+      {
+          "id": "OrderCheckCallCloudVM",
+          "group": 1,
+          "baseline": 1.5,
+          "value": 269
+      },
+      {
+          "id": "Router",
+          "group": 1,
+          "baseline": 3,
+          "value": 269
+      }
+  ]
+}
