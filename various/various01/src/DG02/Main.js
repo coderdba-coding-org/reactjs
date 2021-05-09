@@ -16,6 +16,7 @@ export default function Main(){
     // state to store the network json with baseline and actual values as well
     const [app, setApp] = useState('myApp');
     const [networkJson, setNetworkJson] = useState();
+    const [networkSVG, setNetworkSVG] = useState();
 
     // functions to handle form/button events
     const handleChange = event => setApp(event.target.value);
@@ -47,20 +48,29 @@ export default function Main(){
     }
     */
 
-    const GenerateNetworkDiagram = () => {
-        console.log("GenerateNetworkDiagram(): App is: ", app)
+    // use this with the "return 1" below
+    const DisplayNetworkDiagram = () => {
+        console.log("DisplayNetworkDiagram(): App is: ", app)
+        //setNetworkSVG(DGApp(app))
         return(DGApp(app))
     }
 
-    /* This works when the state 'app' defaults to 'myApp'
+    const GenerateNetworkDiagram = () => {
+        console.log("GenerateNetworkDiagram(): App is: ", app)
+        //setNetworkSVG(DGApp(app))
+        return(DGApp(app))
+    }
+
+    /* return 1: This works when the state 'app' defaults to 'myApp' */
+    /*
     return (
         <div className="App">
         <section>
           <h1>MyApp Hot Spots!!</h1>
-          <GenerateNetworkDiagram />
+          <DisplayNetworkDiagram />
         </section>
       </div>
-      )
+    )
     */
 
     
@@ -85,7 +95,7 @@ export default function Main(){
             <button onClick={handleClick}>Click to Re-check</button>
           </div>
           <div>
-            <button onClick={GenerateNetworkDiagram}>Click for Network Diagram</button>
+               <DisplayNetworkDiagram />
           </div>
         </section>
       )
@@ -93,4 +103,8 @@ export default function Main(){
 
       //<button onClick={DGApp(app)}>Click for Network Diagram</button>
       //<button onClick={GenerateNetworkDiagram}>Click for Network Diagram</button>
+      
+      //<button onClick={setNetworkSVG(DGApp(app))}>Click for Network Diagram</button>
+      //<networkSVG />
+
 }
