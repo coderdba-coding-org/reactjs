@@ -1,0 +1,2 @@
+dataLinks.json - make this come from the Golang API
+- that is, for one thing called myApp - we should serve both these from golang: 1. the network  2. the network node metrics
