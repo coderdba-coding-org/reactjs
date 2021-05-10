@@ -14,7 +14,7 @@ import { DGApp } from './DGApp'
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('myApp2');
+    const [app, setApp] = useState('chooseAnApp');
     const [networkJson, setNetworkJson] = useState();
     
     // setting this may try a re-render - need to check
@@ -51,7 +51,7 @@ export default function Main(){
         if (app == "myApp") {
             return ("Generated network diagram for: " + app + " (may take a few moments)")
         } else {
-            return ("Cannot generate network-diagram for this app: " + app)
+            return ("Cannot generate network-diagram for this app: " + app + ". Choose a different app")
         }
     }
 
@@ -71,8 +71,9 @@ export default function Main(){
 
     // TBD:
     // Remove submit
-    // Introduce a message on what can be fetched
     // Introduce a message on 'wait, fetching'
+    // DONE:
+    // Introduce a message on what can be fetched (done)
     return (
         <section>
           <div>
@@ -138,6 +139,10 @@ export default function Main(){
           <br></br>
           <div>
             <button onClick={handleClick}>Click to Re-check</button>
+          </div>
+          <div>
+              <br></br>
+               <MessageForChosenValues />
           </div>
           <div>
                <DisplayNetworkDiagram />
