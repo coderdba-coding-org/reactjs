@@ -25,15 +25,38 @@ export function DG(container, app){
 
     const request = async () => {
 
+    // OLD CALL - WITH NODES FROM EXTERNAL CALL, LINKS FROM LOCAL FILE
+    /* 
     const response = await fetch('http://localhost:8081/network/' + app);
     const responseJson = await response.json();
     console.log(responseJson);
 
     let dataNodes = responseJson
+    console.log(dataNodes);
+
     //const links = data.links.map(d => Object.create(d));
     //const nodes = data.nodes.map(d => Object.create(d));
     const links = dataLinks.links.map(d => Object.create(d));
     const nodes = dataNodes.nodes.map(d => Object.create(d));
+     */
+
+    // NEW CALL - WITH NODES AND LINKS FROM EXTERNAL CALL
+    /** */
+    const response = await fetch('http://localhost:8081/networknodesandlinks/' + app);
+    const responseJson = await response.json();
+    console.log(responseJson);
+
+    let dataNodesAndLinks = responseJson
+    console.log(dataNodesAndLinks);
+
+    const nodes = dataNodesAndLinks.nodes.map(d => Object.create(d))
+    const links = dataNodesAndLinks.links.map(d => Object.create(d))
+ 
+    /**/
+
+    console.log("Nodes and Links separated:")
+    console.log(nodes)
+    console.log(links)
 
     const simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id))
