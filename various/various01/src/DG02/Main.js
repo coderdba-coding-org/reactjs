@@ -42,7 +42,6 @@ export default function Main(){
         event.preventDefault()
     }
 
-    // use this with the "return 1" below
     const DisplayNetworkDiagram = () => {
         console.log("DisplayNetworkDiagram(): App is: ", app)
         // setting this may try a re-render - need to check
@@ -51,10 +50,12 @@ export default function Main(){
         if (app == "myApp") {
             return(DGApp(app))
         } else {
-            return ("Cannot generate network diagram for this app: " + app )
+            return ("Cannot generate network diagram for this app: " + app + "</br>")
         }
     }
 
+    // this is similar to DisplayNetworkDiagram 
+    // - need to check if this can be used with a button (or delete it)
     const GenerateNetworkDiagram = () => {
         //console.log("GenerateNetworkDiagram(): App is: ", app)
         // setting this may try a re-render - need to check
@@ -79,7 +80,6 @@ export default function Main(){
     )
     */
 
-    
     return (
         <section>
           <div>
@@ -105,7 +105,6 @@ export default function Main(){
           </div>
         </section>
       )
-    
 
       //<button onClick={DGApp(app)}>Click for Network Diagram</button>
       //<button onClick={GenerateNetworkDiagram}>Click for Network Diagram</button>
