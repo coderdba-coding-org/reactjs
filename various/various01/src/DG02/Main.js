@@ -100,7 +100,7 @@ export default function Main(){
   //const DisplayChartsForTheNodes = async() => {
   const DisplayChartsForTheNodesFetch = () => {
 
-    console.log("DisplayChartsForTheNodesFetch():")
+    console.log("DisplayChartsForTheNodesFetch(): In the function now.")
 
     const getNodes = async() => {
       const response = await fetch('http://localhost:8081/nodes/' + app);
@@ -119,11 +119,15 @@ export default function Main(){
     return("Work in progress")
   }
 
-  const DisplayChartsForTheNodesAxios = () => {
+  //const DisplayChartsForTheNodesAxios = () => {
+
+  function DisplayChartsForTheNodesAxios() {
+
+    console.log("DisplayChartsForTheNodesAxios(): In the function now.")
 
     const url = 'http://localhost:8081/nodes/' + app
 
-    axios.get(url)
+    const axiosMessage = axios.get(url)
       .then(res => {
         // get the whole incoming data - which is an array of jsons
         const dataGotten = res.data;
@@ -131,10 +135,10 @@ export default function Main(){
         console.log("DisplayChartsForTheNodesAxios(): dataGotten: ")
         console.log(dataGotten)
        
+        return "finished axios call"
       });
 
-      return("Work in progress")
-
+      return(axiosMessage + "Work in progress")
   }
 
     // TBD:
@@ -169,10 +173,6 @@ export default function Main(){
           <div>
               <br></br>
                <MessageForChosenValues />
-          </div>
-          <div>
-               <h2>Line Chart Class for the App</h2>
-               <DisplayLineChart />
           </div>
           <div>
               <DisplayChartsForTheNodesAxios />
