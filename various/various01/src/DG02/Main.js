@@ -179,16 +179,26 @@ export default function Main(){
 
         console.log("DisplayChartsForTheNodesAxios2(): res: ")
         console.log(res)
+        console.log(typeof(res))
         console.log("DisplayChartsForTheNodesAxios2(): resData: ")
         console.log(resData)
+        console.log(typeof(resData))
         console.log("DisplayChartsForTheNodesAxios2(): resDataNodes: ")
         console.log(resDataNodes)
+        console.log(typeof(resDataNodes))
 
         //const items = resData.map((item, i) => (
-        const items = resDataNodes.map((item, i) => (
+        /*
+        const items = resDataNodes.values((item, i) => (
           <li key={i} className="list-group-item">{item.id}</li>
         ));
-      
+        */
+
+        const resDataNodesMap = Object.values(resDataNodes)
+        console.log("DisplayChartsForTheNodesAxios2(): resDataNodesMap: ")
+        console.log(resDataNodesMap)
+        console.log(typeof(resDataNodesMap))
+
         return (
           <div>
             <ul className="list-group list-group-flush">
