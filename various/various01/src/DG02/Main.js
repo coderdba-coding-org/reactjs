@@ -98,9 +98,9 @@ export default function Main(){
   // function to display charts for the nodes
   // 'async' is required to use 'await' within it
   //const DisplayChartsForTheNodes = async() => {
-  const DisplayChartsForTheNodesFetch = () => {
+  const DisplayChartsForTheNodesFetchAwait = () => {
 
-    console.log("DisplayChartsForTheNodesFetch(): In the function now.")
+    console.log("DisplayChartsForTheNodesFetchAwait(): In the function now.")
 
     const getNodes = async() => {
       const response = await fetch('http://localhost:8081/nodes/' + app);
@@ -111,12 +111,36 @@ export default function Main(){
       const nodes = responseJson.nodes.map(d => Object.create(d));
       console.log("DisplayChartsForTheNodes(): nodes")
       console.log(nodes)
+      console.log(new Date().getTime())
 
+      // return nodes
+      //return responseJson
+
+      const chartList = responseJson.nodes((item, i) => <div> <LineChartClass nodeName={item.Id}/> </div>)
+      return (
+        chartList
+      );
     }
 
-    getNodes()
+    /*
+    const response = getNodes()
+    console.log("DisplayChartsForTheNodesFetchAwait: response: ", response)
+    console.log(new Date().getTime())
+    *.
+    //return(<div> {response.Id} </div>)
+    //return(<div> <LineChartClass nodeName={response.Id}/> </div>)  
 
-    return("Work in progress")
+    /*
+    const chartList = response.map((item, i) => <div> <LineChartClass nodeName={item.Id}/> </div>)
+    return (
+      chartList
+    );
+
+    */
+
+    return(getNodes()) 
+
+    //return("Work in progress")
   }
 
   //const DisplayChartsForTheNodesAxios = () => {
@@ -140,6 +164,48 @@ export default function Main(){
 
       return(axiosMessage + "Work in progress")
   }
+
+  // https://stackoverflow.com/questions/47658765/objects-are-not-valid-as-a-react-child-found-object-promise
+  function DisplayChartsForTheNodesAxios2 () {
+  
+    const getNodes = async() => {
+
+      const url = 'http://localhost:8081/nodes/' + app
+
+      try {
+        const res = await axios.get(url);
+        const resData = res.data
+        const resDataNodes = res.data.nodes
+
+        console.log("DisplayChartsForTheNodesAxios2(): res: ")
+        console.log(res)
+        console.log("DisplayChartsForTheNodesAxios2(): resData: ")
+        console.log(resData)
+        console.log("DisplayChartsForTheNodesAxios2(): resDataNodes: ")
+        console.log(resDataNodes)
+
+        //const items = resData.map((item, i) => (
+        const items = resDataNodes.map((item, i) => (
+          <li key={i} className="list-group-item">{item.id}</li>
+        ));
+      
+        return (
+          <div>
+            <ul className="list-group list-group-flush">
+              {items}
+            </ul>
+          </div>
+        );
+      }
+      catch (err) {
+        console.log(err)
+      }
+    }
+
+    return getNodes()
+  }
+
+
 
     // TBD:
     // Remove submit
@@ -175,7 +241,8 @@ export default function Main(){
                <MessageForChosenValues />
           </div>
           <div>
-              <DisplayChartsForTheNodesAxios />
+              <h2>Chats for the Nodes</h2>
+              <DisplayChartsForTheNodesAxios2 />
           </div>
         </section>
 
