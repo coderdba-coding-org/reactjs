@@ -12,14 +12,15 @@ import React, { useState } from 'react';
 import { DGApp } from './DGApp'
 import  Chart  from './Chart'
 import  ChartFunc  from './ChartFunc'
+import axios from 'axios'
 import LineChartClass from './LineChart-Class'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('ChooseAnApp');
+    const [app, setApp] = useState('MyApp');
     const [action, setAction] = useState('networkDiagram');
-    const [networkJson, setNetworkJson] = useState();
+    const [networkNodes, setNetworkNodes] = useState();
     
     // setting this may try a re-render - need to check
     //const [networkSVG, setNetworkSVG] = useState();
@@ -81,8 +82,8 @@ export default function Main(){
     // function for displaying line chart
     const DisplayLineChart = () => {
             
-      console.log("DisplayNetworkDiagram(): App is: " + app)
-      console.log("DisplayNetworkDiagram(): Action is: " + action)
+      console.log("DisplayLineChart(): App is: " + app)
+      console.log("DisplayLineChart(): Action is: " + action)
 
       if (app == "MyApp" && action == 'networkDiagram') {
 
@@ -94,29 +95,47 @@ export default function Main(){
       }
   }
 
+  // function to display charts for the nodes
+  // 'async' is required to use 'await' within it
+  //const DisplayChartsForTheNodes = async() => {
+  const DisplayChartsForTheNodesFetch = () => {
 
-    // function to display charts for the nodes
-    // 'async' is required to use 'await' within it
-    //const DisplayChartsForTheNodes = async() => {
-    const DisplayChartsForTheNodes = () => {
+    console.log("DisplayChartsForTheNodesFetch():")
 
-        console.log("DisplayChartsForTheNodes():")
+    const getNodes = async() => {
+      const response = await fetch('http://localhost:8081/nodes/' + app);
+      const responseJson = await response.json();
+      console.log("DisplayChartsForTheNodes(): responseJson")
+      console.log(responseJson);
 
-        const getNodes = async() => {
-            const response = await fetch('http://localhost:8081/nodes/' + app);
-            const responseJson = await response.json();
-            console.log("DisplayChartsForTheNodes(): responseJson")
-            console.log(responseJson);
+      const nodes = responseJson.nodes.map(d => Object.create(d));
+      console.log("DisplayChartsForTheNodes(): nodes")
+      console.log(nodes)
 
-            const nodes = responseJson.nodes.map(d => Object.create(d));
-            console.log("DisplayChartsForTheNodes(): nodes")
-            console.log(nodes)
-        }
-
-        getNodes()
-
-        return("Work in progress")
     }
+
+    getNodes()
+
+    return("Work in progress")
+  }
+
+  const DisplayChartsForTheNodesAxios = () => {
+
+    const url = 'http://localhost:8081/nodes/' + app
+
+    axios.get(url)
+      .then(res => {
+        // get the whole incoming data - which is an array of jsons
+        const dataGotten = res.data;
+
+        console.log("DisplayChartsForTheNodesAxios(): dataGotten: ")
+        console.log(dataGotten)
+       
+      });
+
+      return("Work in progress")
+
+  }
 
     // TBD:
     // Remove submit
@@ -154,6 +173,9 @@ export default function Main(){
           <div>
                <h2>Line Chart Class for the App</h2>
                <DisplayLineChart />
+          </div>
+          <div>
+              <DisplayChartsForTheNodesAxios />
           </div>
         </section>
 
@@ -195,6 +217,10 @@ export default function Main(){
           <div>
                <h2>Line Chart Class for the App</h2>
                <LineChartClass nodeName={app}/>
+          </div>
+          <div>
+               <h2>Line Chart Class for the App</h2>
+               <DisplayLineChart />
           </div>
           <div>
               <DisplayChartsForTheNodes />
