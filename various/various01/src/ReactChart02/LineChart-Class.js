@@ -16,7 +16,14 @@ export default class LineChartClass extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
+
+    console.log("Prop nodeName: ")
+    console.log(this.props.nodeName)
+
+    //const url = "http://localhost:8081/nodedetaillabelsvalues/" + this.props.nodeName
+    const url = "http://localhost:8081/nodedetaillabelsvalues/MyApp"
+    //axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
+    axios.get(url)
       .then(res => {
 
         // get the whole incoming data - which is an array of jsons
@@ -28,6 +35,8 @@ export default class LineChartClass extends React.Component {
         this.setState({labels: dataGotten.labels})
         this.setState({values: dataGotten.values})
 
+        console.log("State nodeName: ")
+        console.log(this.state.nodeName)
         /*
         console.log("state nodeName:")
         console.log(this.state.nodeName)

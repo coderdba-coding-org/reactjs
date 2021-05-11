@@ -10,7 +10,7 @@ export default class App extends React.Component {
 			<div>
 			<hr />
             <h1>Class Graph</h1>
-			<LineChartClass />
+			<LineChartClass nodeName="MyApp"/>
 			</div>
 		);
 	}
