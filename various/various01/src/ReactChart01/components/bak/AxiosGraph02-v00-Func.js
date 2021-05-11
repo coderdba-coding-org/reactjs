@@ -1,48 +1,50 @@
 //https://www.digitalocean.com/community/tutorials/react-axios-react
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Line } from "react-chartjs-2"
 
-export default class Chart extends React.Component {
-  
-  state = {
-    nodeName:   "",
-    metricName: "",
-    labels: [],
-    values: []
-  }
+export default function AxiosGraph02Func() {
 
-  componentDidMount() {
+  console.log("In AxiosGraph02Func")
+
+  // state to store the network json with baseline and actual values as well
+  const [nodeName, setNodeName] = useState()
+  const [metricName, setMetricName] = useState()
+  const [labels, setLabels] = useState()
+  const [values, setValues] = useState()
+
+  const request = () =>  {
+    console.log("In AxiosGraph02Func: request()")
+
     axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
       .then(res => {
-
         // get the whole incoming data - which is an array of jsons
         const dataGotten = res.data;
 
         // set the state that will hold the whole data
-        this.setState({nodeName: dataGotten.node_name})
-        this.setState({metricName: dataGotten.metric_name})
-        this.setState({labels: dataGotten.labels})
-        this.setState({values: dataGotten.values})
+        setNodeName(dataGotten.node_name)
+        setMetricName(dataGotten.metric_name)
+        setLabels(dataGotten.labels)
+        setValues(dataGotten.values)
 
         console.log("state nodeName:")
-        console.log(this.state.nodeName)
+        console.log(nodeName)
         console.log("state metricName:")
-        console.log(this.state.metricName)
+        console.log(metricName)
         console.log("state labels:")
-        console.log(this.state.labels)
+        console.log(labels)
         console.log("state values:")
-        console.log(this.state.values)
+        console.log(values)
       });
   }
-
-  render() {
-      
-      const data = {
-        labels: this.state.labels,
+    
+  request()
+  
+  const data = {
+        labels: labels,
         datasets: [
           {
-            label: this.state.metricName + " : for " + this.state.nodeName,
+            label: metricName + " : for " + nodeName,
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',
@@ -60,18 +62,17 @@ export default class Chart extends React.Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: this.state.values
+            data: values
           }
         ]
-      };
+    };
 
-     return (
+    return (
       <div>
-        <h2>Detailed Metric: {this.state.metricName} - for {this.state.nodeName} </h2>
+        <h2>Detailed Metric: {metricName} - for {nodeName} </h2>
         <Line data={data} />
       </div>
     )
 
-  }
-
+  
 }

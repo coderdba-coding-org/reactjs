@@ -95,9 +95,9 @@ export default function Main(){
 
         createResponse()
 
-
-
-        return("Work in progress")
+        // using 'new' chart as this chart is a 'class' component not functional component
+        return(new Chart())
+        //return("Work in progress")
     }
 
     // TBD:

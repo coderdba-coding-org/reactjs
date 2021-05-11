@@ -11,6 +11,7 @@
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
 import  Chart  from './Chart'
+import  ChartFunc  from './ChartFunc'
 
 export default function Main(){
 
@@ -82,6 +83,9 @@ export default function Main(){
     //const DisplayChartsForTheNodes = async() => {
     const DisplayChartsForTheNodes = () => {
 
+        console.log("DisplayChartsForTheNodes():")
+
+        /*
         const createResponse = async() => {
             const response = await fetch('http://localhost:8081/nodes/' + app);
             const responseJson = await response.json();
@@ -94,10 +98,10 @@ export default function Main(){
         }
 
         createResponse()
+        */
 
-
-
-        return("Work in progress")
+        return(ChartFunc(app))
+        //return("Work in progress")
     }
 
     // TBD:
