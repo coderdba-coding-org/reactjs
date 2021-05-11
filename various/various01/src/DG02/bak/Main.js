@@ -10,11 +10,12 @@
 
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
+import  Chart  from './Chart'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('chooseAnApp');
+    const [app, setApp] = useState('myApp');
     const [action, setAction] = useState('networkDiagram');
     const [networkJson, setNetworkJson] = useState();
     
@@ -76,6 +77,29 @@ export default function Main(){
         }
     }
 
+    // function to display charts for the nodes
+    // 'async' is required to use 'await' within it
+    //const DisplayChartsForTheNodes = async() => {
+    const DisplayChartsForTheNodes = () => {
+
+        const createResponse = async() => {
+            const response = await fetch('http://localhost:8081/nodes/' + app);
+            const responseJson = await response.json();
+            console.log("DisplayChartsForTheNodes(): responseJson")
+            console.log(responseJson);
+
+            const nodes = responseJson.nodes.map(d => Object.create(d));
+            console.log("DisplayChartsForTheNodes(): nodes")
+            console.log(nodes)
+        }
+
+        createResponse()
+
+
+
+        return("Work in progress")
+    }
+
     // TBD:
     // Remove submit
     // Introduce a message on 'wait, fetching'
@@ -112,7 +136,14 @@ export default function Main(){
           <div>
                <DisplayNetworkDiagram />
           </div>
+          <div>
+               <Chart />
+          </div>
+          <div>
+              <DisplayChartsForTheNodes />
+          </div>
         </section>
+
       )
 
       /*

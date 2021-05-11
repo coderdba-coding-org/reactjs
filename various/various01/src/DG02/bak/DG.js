@@ -23,6 +23,7 @@ export function DG(container, app){
     let dataNodesFromApi
     console.log('Calling http://localhost:808X/<to get network metric> ')
 
+    // need this 'async' function so that 'await' can be used within it
     const request = async () => {
 
     // OLD CALL - WITH NODES FROM EXTERNAL CALL, LINKS FROM LOCAL FILE
@@ -49,6 +50,7 @@ export function DG(container, app){
     let dataNodesAndLinks = responseJson
     console.log(dataNodesAndLinks);
 
+    // Make 'map' so that it becomes iterable without need for an explicit loop
     const nodes = dataNodesAndLinks.nodes.map(d => Object.create(d))
     const links = dataNodesAndLinks.links.map(d => Object.create(d))
  
