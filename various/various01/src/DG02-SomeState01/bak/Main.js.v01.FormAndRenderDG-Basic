@@ -10,28 +10,19 @@
 
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
-import  Chart  from './Chart'
-import  ChartFunc  from './ChartFunc'
-import LineChartClass from './LineChart-Class'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('myApp');
-    const [action, setAction] = useState('networkDiagram');
+    const [app, setApp] = useState('chooseAnApp');
     const [networkJson, setNetworkJson] = useState();
     
     // setting this may try a re-render - need to check
     //const [networkSVG, setNetworkSVG] = useState();
 
     // functions to handle form/button events
-    const handleChangeApp = event => {
+    const handleChange = event => {
         setApp(event.target.value);
-    }
-
-    // functions to handle form/button events
-    const handleChangeAction = event => {
-        setAction(event.target.value);
     }
  
     const handleSubmit = event => {
@@ -57,8 +48,8 @@ export default function Main(){
 
     // for section that displays messages based on chosen parameters
     const MessageForChosenValues = () => {
-        if (app == "myApp" && action == 'networkDiagram') {
-            return ("Network diagram for: " + app + " (may take a few moments)")
+        if (app == "myApp") {
+            return ("Generated network diagram for: " + app + " (may take a few moments)")
         } else {
             return ("Cannot generate network-diagram for this app: " + app + ". Choose a different app")
         }
@@ -66,42 +57,16 @@ export default function Main(){
 
     // function for displaying network diagram
     const DisplayNetworkDiagram = () => {
-            
-        console.log("DisplayNetworkDiagram(): App is: " + app)
-        console.log("DisplayNetworkDiagram(): Action is: " + action)
-
-        if (app == "myApp" && action == 'networkDiagram') {
-
+        console.log("DisplayNetworkDiagram(): App is: ", app)
+        // setting this may try a re-render - need to check
+        //setNetworkSVG(DGApp(app))
+        
+        if (app == "myApp") {
             return(DGApp(app))
         } else {
             //return ("Cannot generate network diagram for this app: " + app)
-            return ("Choose the correct combination of app and action")
+            return ("")
         }
-    }
-
-    // function to display charts for the nodes
-    // 'async' is required to use 'await' within it
-    //const DisplayChartsForTheNodes = async() => {
-    const DisplayChartsForTheNodes = () => {
-
-        console.log("DisplayChartsForTheNodes():")
-
-        /*
-        const createResponse = async() => {
-            const response = await fetch('http://localhost:8081/nodes/' + app);
-            const responseJson = await response.json();
-            console.log("DisplayChartsForTheNodes(): responseJson")
-            console.log(responseJson);
-
-            const nodes = responseJson.nodes.map(d => Object.create(d));
-            console.log("DisplayChartsForTheNodes(): nodes")
-            console.log(nodes)
-        }
-
-        createResponse()
-        */
-
-        return("Work in progress")
     }
 
     // TBD:
@@ -112,73 +77,21 @@ export default function Main(){
     return (
         <section>
           <div>
-            <h1>Application Health Visualizer</h1>
-            <form>
-              <label>
-              Pick the App:
-                <select value={app} onChange={handleChangeApp}>
-                  <option value="chooseAnApp">Choose an App</option>
-                  <option value="myApp">MyApp</option>
-                  <option value="myApp2">MyApp2</option>
-                </select>
-              </label>
-              <br></br>
-              <br></br>
-              <label>
-              Pick the Action:
-                <select value={action} onChange={handleChangeAction}>
-                  <option value="networkDiagram">Network Diagram</option>
-                  <option value="graphs">Graphs</option>
-                </select>
-              </label>
-            </form>
-          </div>
-          <div>
-              <br></br>
-               <MessageForChosenValues />
-          </div>
-          <div>
-               <DisplayNetworkDiagram />
-          </div>
-          <div>
-               <LineChartClass nodeName="MyApp"/>
-          </div>
-          <div>
-              <DisplayChartsForTheNodes />
-          </div>
-        </section>
-
-      )
-
-      /*
-      return (
-        <section>
-          <div>
             <h1>Network Picker</h1>
             <form onSubmit={handleSubmit}>
               <label>
               Pick the App:
-                <select value={app} onChange={handleChangeApp}>
+                <select value={app} onChange={handleChange}>
                   <option value="chooseAnApp">Choose an App</option>
                   <option value="myApp">MyApp</option>
                   <option value="myApp2">MyApp2</option>
-                </select>
-              </label>
-              <br></br>
-              <br></br>
-              <label>
-              Pick the Action:
-                <select value={action} onChange={handleChangeAction}>
-                  <option value="networkDiagram">Network Diagram</option>
-                  <option value="graphs">Graphs</option>
                 </select>
               </label>
               <input type="submit" value="Submit" />
             </form>
           </div>
-          
+          <br></br>
           <div>
-            <br></br>
             <button onClick={handleClick}>Click to Re-check</button>
           </div>
           <div>
@@ -190,7 +103,6 @@ export default function Main(){
           </div>
         </section>
       )
-      */
 
     //-------------------- SAVED STUFF BELOW --------------------------------------------//
 

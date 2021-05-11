@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 import { DGApp } from './DGApp'
 import  Chart  from './Chart'
 import  ChartFunc  from './ChartFunc'
-import LineChartClass from './LineChart-Class'
 
 export default function Main(){
 
@@ -101,7 +100,9 @@ export default function Main(){
         createResponse()
         */
 
-        return("Work in progress")
+        return(ChartFunc())
+        //return(ChartFunc(app))
+        //return("Work in progress")
     }
 
     // TBD:
@@ -141,7 +142,7 @@ export default function Main(){
                <DisplayNetworkDiagram />
           </div>
           <div>
-               <LineChartClass nodeName="MyApp"/>
+               <Chart />
           </div>
           <div>
               <DisplayChartsForTheNodes />

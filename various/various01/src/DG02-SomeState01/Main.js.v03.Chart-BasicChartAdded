@@ -11,8 +11,6 @@
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
 import  Chart  from './Chart'
-import  ChartFunc  from './ChartFunc'
-import LineChartClass from './LineChart-Class'
 
 export default function Main(){
 
@@ -84,9 +82,6 @@ export default function Main(){
     //const DisplayChartsForTheNodes = async() => {
     const DisplayChartsForTheNodes = () => {
 
-        console.log("DisplayChartsForTheNodes():")
-
-        /*
         const createResponse = async() => {
             const response = await fetch('http://localhost:8081/nodes/' + app);
             const responseJson = await response.json();
@@ -99,9 +94,10 @@ export default function Main(){
         }
 
         createResponse()
-        */
 
-        return("Work in progress")
+        // using 'new' chart as this chart is a 'class' component not functional component
+        return(new Chart())
+        //return("Work in progress")
     }
 
     // TBD:
@@ -141,7 +137,7 @@ export default function Main(){
                <DisplayNetworkDiagram />
           </div>
           <div>
-               <LineChartClass nodeName="MyApp"/>
+               <Chart />
           </div>
           <div>
               <DisplayChartsForTheNodes />
