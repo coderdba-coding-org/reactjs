@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Line } from "react-chartjs-2"
 
-export default function AxiosGraph02Func() {
+export default function ChartFunc() {
 
   console.log("In AxiosGraph02Func")
 
@@ -13,7 +13,7 @@ export default function AxiosGraph02Func() {
   const [labels, setLabels] = useState()
   const [values, setValues] = useState()
 
-  const request = () =>  {
+  const request = async () =>  {
     console.log("In AxiosGraph02Func: request()")
 
     axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
@@ -39,7 +39,7 @@ export default function AxiosGraph02Func() {
   }
     
   request()
-  
+
   const data = {
         labels: labels,
         datasets: [
@@ -73,6 +73,4 @@ export default function AxiosGraph02Func() {
         <Line data={data} />
       </div>
     )
-
-  
 }

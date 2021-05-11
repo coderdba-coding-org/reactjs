@@ -100,7 +100,8 @@ export default function Main(){
         createResponse()
         */
 
-        return(ChartFunc(app))
+        return(ChartFunc())
+        //return(ChartFunc(app))
         //return("Work in progress")
     }
 

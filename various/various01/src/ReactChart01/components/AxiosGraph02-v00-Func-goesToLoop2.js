@@ -12,8 +12,10 @@ export default function AxiosGraph02Func() {
   const [metricName, setMetricName] = useState()
   const [labels, setLabels] = useState()
   const [values, setValues] = useState()
+  const [chartData, setChartData] = useState({})
 
-  const request = async () =>  {
+  //const request = () =>  {
+  function request(){
     console.log("In AxiosGraph02Func: request()")
 
     axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
@@ -36,11 +38,8 @@ export default function AxiosGraph02Func() {
         console.log("state values:")
         console.log(values)
       });
-  }
-    
-  request()
 
-  const data = {
+    const data = {
         labels: labels,
         datasets: [
           {
@@ -66,11 +65,29 @@ export default function AxiosGraph02Func() {
           }
         ]
     };
+    setChartData(data)
 
+    return "just a dummy return"
+    /*
     return (
       <div>
         <h2>Detailed Metric: {metricName} - for {nodeName} </h2>
-        <Line data={data} />
+        <Line data={chartData} />
       </div>
     )
+    */
+  }
+
+  request()
+
+  //return "just a dummy return"
+  
+  /*
+    return (
+      <div>
+        <h2>Detailed Metric: {metricName} - for {nodeName} </h2>
+        <Line data={chartData} />
+      </div>
+    )
+  */
 }

@@ -13,7 +13,7 @@ export default function AxiosGraph02Func() {
   const [labels, setLabels] = useState()
   const [values, setValues] = useState()
 
-  const request = async () =>  {
+  //const request = () =>  {
     console.log("In AxiosGraph02Func: request()")
 
     axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
@@ -36,9 +36,10 @@ export default function AxiosGraph02Func() {
         console.log("state values:")
         console.log(values)
       });
-  }
+
+  //}
     
-  request()
+  //request()
 
   const data = {
         labels: labels,
@@ -73,4 +74,7 @@ export default function AxiosGraph02Func() {
         <Line data={data} />
       </div>
     )
+  //}
+
+  //return request()
 }
