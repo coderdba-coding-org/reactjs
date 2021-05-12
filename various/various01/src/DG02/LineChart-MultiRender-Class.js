@@ -4,12 +4,13 @@
 
 import React from 'react';
 import axios from 'axios';
-import { LineChartClass } from "./LineChart-Class"
+import LineChartClass from "./LineChart-Class"
 
 export default class LineChartMultiRenderClass extends React.Component {
 
     state = {
         app:   "",
+        nodes: "",
         renderSegment: ""
       }
 
@@ -26,31 +27,40 @@ export default class LineChartMultiRenderClass extends React.Component {
           .then(res => {
     
             // get the whole incoming data - which is a json
-            const nodeListArray = resData.nodes
-    
+            const nodesGotten = res.data.nodes
+            console.log("componentDidMount(): nodesGotten: ")
+            console.log(nodesGotten)
+
             // set the state that will hold the whole data
-            this.setState({nodeName: dataGotten.node_name})
-            this.setState({metricName: dataGotten.metric_name})
-            this.setState({labels: dataGotten.labels})
-            this.setState({values: dataGotten.values})
+            this.setState({app: this.props.appName})
+            this.setState({nodes: nodesGotten})
     
-            console.log("State nodeName: ")
-            console.log(this.state.nodeName)
-            /*
-            console.log("state nodeName:")
-            console.log(this.state.nodeName)
-            console.log("state metricName:")
-            console.log(this.state.metricName)
-            console.log("state labels:")
-            console.log(this.state.labels)
-            console.log("state values:")
-            console.log(this.state.values)
-            */
+            console.log("componentDidMount(): State app: ")
+            console.log(this.state.app)
+            console.log("componentDidMount(): State nodes: ")
+            console.log(this.state.nodes)
+
+            this.setState({renderSegment:
+                (<div>
+                  {nodesGotten.map((item, key) => (
+                    <div key={key}><LineChartClass nodeName={Object.values(item)[0]}/></div>
+                  ))}
+                </div>
+                )
+                }
+            )  
+
+            console.log("componentDidMount(): State renderSegment: ")
+            console.log(this.state.renderSegment)
+            
            
-          });
+          }); // end of axios 'then'
+      }
+
+      render() {
+          //return "Work In Progress"
+          return (this.state.renderSegment)
       }
 
 
-
-    }
 }

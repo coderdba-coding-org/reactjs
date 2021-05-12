@@ -14,11 +14,12 @@ import  Chart  from './Chart'
 import  ChartFunc  from './ChartFunc'
 import axios from 'axios'
 import LineChartClass from './LineChart-Class'
+import LineChartMultiRenderClass from './LineChart-MultiRender-Class'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('ChooseAnApp');
+    const [app, setApp] = useState('MyApp');
     const [action, setAction] = useState('networkDiagram');
     const [chartsForNodesRender, setChartsForNodesRender] = useState('');
     const [networkNodes, setNetworkNodes] = useState();
@@ -236,6 +237,10 @@ export default function Main(){
           <div>
               <br></br>
                <MessageForChosenValues />
+          </div>
+          <div>
+              <br></br>
+               <LineChartMultiRenderClass appName={app} />
           </div>
         </section>
 
