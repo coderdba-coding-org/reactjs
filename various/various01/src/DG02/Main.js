@@ -239,6 +239,10 @@ export default function Main(){
                <MessageForChosenValues />
           </div>
           <div>
+               <h2>Network Diagram</h2>
+               <DisplayNetworkDiagram />
+          </div>
+          <div>
               <br></br>
                <LineChartMultiRenderClass appName={app} />
           </div>
