@@ -24,7 +24,7 @@ export default class LineChartClass extends React.Component {
     console.log("LineChartClass - componentDidMount() - URL is: " + url )
     //const url = "http://localhost:8081/nodedetaillabelsvalues/MyApp"
     //axios.get(`http://localhost:8081/nodedetaillabelsvalues/MyApp`)
-    axios.get(url);
+    axios.get(url); // not sure if this additional one is required
     axios.get(url)
       .then(res => {
 

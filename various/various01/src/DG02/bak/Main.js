@@ -237,10 +237,6 @@ export default function Main(){
               <br></br>
                <MessageForChosenValues />
           </div>
-          <div>
-              <h2>Charts for the Nodes</h2>
-              <DisplayChartsForTheNodesAxios3a />
-          </div>
         </section>
 
       )
