@@ -18,7 +18,7 @@ import LineChartClass from './LineChart-Class'
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('ChooseAnApp');
+    const [app, setApp] = useState('MyApp');
     const [action, setAction] = useState('networkDiagram');
     const [chartsForNodesRender, setChartsForNodesRender] = useState('');
     const [networkNodes, setNetworkNodes] = useState();
@@ -117,11 +117,6 @@ export default function Main(){
   }
 
   const DisplayChartsForTheNodesAxios3a = () => {
-
-    if (app != "MyApp2") {
-      return "Choose MyApp2 and networkDiagram"
-    }
-
     const chartsForNodes = DisplayChartsForTheNodesAxios3aFetchURL()
     .then(resData => {
       console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
@@ -143,12 +138,6 @@ export default function Main(){
       console.log(nodeListArray.length)
 
       console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray processing")
-
-      // Use these sites info
-      // Get only the values and generate a segment to render
-      // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
-      // https://www.pluralsight.com/guides/load-and-render-json-data-into-react-components
-
       nodeListArray.map((item) => { 
         // https://www.samanthaming.com/tidbits/76-converting-object-to-array/
         console.log(item) // this prints ok when nodeListArrau = resData.nodes
@@ -157,19 +146,9 @@ export default function Main(){
         console.log(Object.values(item)) // this prints ok when nodeListArrau = resData.nodes
         console.log(Object.values(item)[0]) // this prints ok when nodeListArrau = resData.nodes
       });
-
-      // <div> <LineChartClass nodeName={Object.values(item)[0]}/> </div>
-
-      //return (
-      setChartsForNodesRender(
-        <div>
-          {nodeListArray.map((item) => (
-            <div><LineChartClass nodeName={Object.values(item)[0]}/></div>
-          ))}
-        </div>
-      )    
+      
       //return "work in progress"
-      //setChartsForNodesRender("work in progress x")
+      setChartsForNodesRender("work in progress x")
 
     }); // this the end of 'then'
 
