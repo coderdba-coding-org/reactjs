@@ -224,7 +224,6 @@ export default function Main(){
   function DisplayChartsForTheNodesAxios3() {
   
     const getNodes = async() => {
-
       const url = 'http://localhost:8081/nodes/' + app
 
       try {
@@ -274,6 +273,11 @@ export default function Main(){
     const nodeList =  getNodes()
     var nodeListArray = Array.prototype.slice.call(nodeList);
 
+    console.log("DisplayChartsForTheNodesAxios3(): nodeList is: ")
+    console.log(nodeList)
+    console.log("DisplayChartsForTheNodesAxios3(): nodeListArray is: ")
+    console.log(nodeListArray)
+
     const Node = ({ id }) => (
       <div>
         LineChartClass nodeName={id}
@@ -290,6 +294,143 @@ export default function Main(){
       </div>
     );
 
+    //return getNodes()
+  }
+
+  const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
+
+      const url = 'http://localhost:8081/nodes/' + app
+
+      try {
+        const res = await axios.get(url);
+        const resData = res.data
+        const resDataNodes = res.data.nodes
+        console.log("DisplayChartsForTheNodesAxios3aFetchURL(): resData is: ")
+        console.log(resData) //work well up to here
+        //return "work in progress"
+        return resData;
+      }
+      catch (err) {
+        console.log(err)
+      }
+    
+  }
+
+  const DisplayChartsForTheNodesAxios3a = () => {
+
+    DisplayChartsForTheNodesAxios3aFetchURL()
+    .then(resData => {
+
+      console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
+      console.log(resData) // prints ok without saying Promise
+      console.log("DisplayChartsForTheNodesAxios3a(): resData datatype is: ")
+      console.log(typeof(resData))
+      console.log("DisplayChartsForTheNodesAxios3a(): resData nodes is: ")
+      console.log(resData.nodes)
+
+      const nodeListArray = resData.nodes
+      //const nodeListArray = JSON.parse(resData)
+      //const nodeListArray = Array.prototype.slice.call(resData)
+      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
+      console.log(nodeListArray)
+      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
+      console.log(typeof(nodeListArray))
+
+      
+      const Node = ({ id }) => (
+        <div>
+          LineChartClass nodeName={id}
+        </div>
+      );
+    
+      return (
+        <div>
+          {nodeListArray.map((oneNode) => (
+           <Node
+            id={oneNode.id}
+          />
+          ))}
+        </div>
+      );
+    });
+
+    //var nodeList = []
+    //nodeList = await DisplayChartsForTheNodesAxios3aFetchURL()  
+    //var nodeListArray = []
+    //const nodeListArray = Array.prototype.slice.call(nodeList)
+
+    //console.log("DisplayChartsForTheNodesAxios3a(): nodeList is: ")
+    //console.log(nodeList)
+    //console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
+    //console.log(nodeListArray)
+
+    /*
+    const Node = ({ id }) => (
+      <div>
+        LineChartClass nodeName={id}
+      </div>
+    );
+    
+    return (
+      <div>
+        {nodeListArray.map((oneNode) => (
+          <Node
+            id={oneNode.id}
+          />
+        ))}
+      </div>
+    );
+
+    */
+
+    return "work in progress"
+    //return getNodes()
+  }
+
+  //const DisplayChartsForTheNodesAxios3a = async() => {
+
+    const DisplayChartsForTheNodesAxios3a0 = () => {
+
+    const getData = async()=>{
+    const resData = await DisplayChartsForTheNodesAxios3aFetchURL()  
+    console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
+    console.log(resData) // prints this ok - does not say promise
+
+    return resData
+    }
+
+    const nodeList = getData()
+
+    //var nodeList = []
+    //nodeList = await DisplayChartsForTheNodesAxios3aFetchURL()  
+    //var nodeListArray = []
+    const nodeListArray = Array.prototype.slice.call(nodeList)
+
+    console.log("DisplayChartsForTheNodesAxios3a(): nodeList is: ")
+    console.log(nodeList)
+    //console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
+    //console.log(nodeListArray)
+
+    /*
+    const Node = ({ id }) => (
+      <div>
+        LineChartClass nodeName={id}
+      </div>
+    );
+    
+    return (
+      <div>
+        {nodeListArray.map((oneNode) => (
+          <Node
+            id={oneNode.id}
+          />
+        ))}
+      </div>
+    );
+
+    */
+
+    return "work in progress"
     //return getNodes()
   }
 
@@ -328,7 +469,7 @@ export default function Main(){
           </div>
           <div>
               <h2>Charts for the Nodes</h2>
-              <DisplayChartsForTheNodesAxios3 />
+              <DisplayChartsForTheNodesAxios3a />
           </div>
         </section>
 
