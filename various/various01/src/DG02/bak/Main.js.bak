@@ -318,7 +318,7 @@ export default function Main(){
 
   const DisplayChartsForTheNodesAxios3a = () => {
 
-    DisplayChartsForTheNodesAxios3aFetchURL()
+    const chartsForNodes = DisplayChartsForTheNodesAxios3aFetchURL()
     .then(resData => {
 
       console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
@@ -328,41 +328,36 @@ export default function Main(){
       console.log("DisplayChartsForTheNodesAxios3a(): resData nodes is: ")
       console.log(resData.nodes)
 
-      const nodeListArray = resData.nodes
-      //const nodeListArray = JSON.parse(resData)
-      //const nodeListArray = Array.prototype.slice.call(resData)
+      //const nodeListArray = Object.entries(resData.nodes) // this will be object of a list of arrays
+      const nodeListArray = resData.nodes  // this will be object of list of objects
+      //const nodeListArray = JSON.parse(resData) // this errors
+      //const nodeListArray = Array.prototype.slice.call(resData) // this puts null
       console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
       console.log(nodeListArray)
-      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
+      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray datatype is: ")
       console.log(typeof(nodeListArray))
+      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray Length is: ")
+      console.log(nodeListArray.length)
 
+      console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray processing")
+      /*
+      nodeListArray.forEach((nodeDetail) =>
+        console.log(nodeDetail[0])
+      )
+      */
+
+      nodeListArray.map((item) => { 
+        // https://www.samanthaming.com/tidbits/76-converting-object-to-array/
+        console.log(item) // this prints ok when nodeListArrau = resData.nodes
+        console.log(Object.keys(item)) // this prints ok when nodeListArrau = resData.nodes
+        console.log(Object.keys(item)[0]) // this prints ok when nodeListArrau = resData.nodes
+        console.log(Object.values(item)) // this prints ok when nodeListArrau = resData.nodes
+        console.log(Object.values(item)[0]) // this prints ok when nodeListArrau = resData.nodes
+      });
+        
       
-      const Node = ({ id }) => (
-        <div>
-          LineChartClass nodeName={id}
-        </div>
-      );
-    
-      return (
-        <div>
-          {nodeListArray.map((oneNode) => (
-           <Node
-            id={oneNode.id}
-          />
-          ))}
-        </div>
-      );
-    });
 
-    //var nodeList = []
-    //nodeList = await DisplayChartsForTheNodesAxios3aFetchURL()  
-    //var nodeListArray = []
-    //const nodeListArray = Array.prototype.slice.call(nodeList)
-
-    //console.log("DisplayChartsForTheNodesAxios3a(): nodeList is: ")
-    //console.log(nodeList)
-    //console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
-    //console.log(nodeListArray)
+    }); // this the end of 'then'
 
     /*
     const Node = ({ id }) => (
@@ -383,13 +378,32 @@ export default function Main(){
 
     */
 
-    return "work in progress"
-    //return getNodes()
+    /*
+      const Node = ({ id }) => (
+        <div>
+          LineChartClass nodeName={id}
+        </div>
+      );
+    
+      // https://www.pluralsight.com/guides/load-and-render-json-data-into-react-components
+      return (
+        <div className="charts-for-nodes">
+          {nodeListArray.map((oneNode, key) => (
+            <div key={key}>
+              <Node
+                id={oneNode.id}
+              />
+            </div>
+          ))}
+        </div>
+      );
+    */
+
+    //return "work in progress"
+    return chartsForNodes
   }
 
-  //const DisplayChartsForTheNodesAxios3a = async() => {
-
-    const DisplayChartsForTheNodesAxios3a0 = () => {
+  const DisplayChartsForTheNodesAxios3a0 = () => {
 
     const getData = async()=>{
     const resData = await DisplayChartsForTheNodesAxios3aFetchURL()  
