@@ -10,19 +10,23 @@
 
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
-import  Chart  from './Chart'
-import  ChartFunc  from './ChartFunc'
 import axios from 'axios'
 import LineChartClass from './LineChart-Class'
 import LineChartMultiRenderClass from './LineChart-MultiRender-Class'
 
+//We are using LineChart-Class.js now instead of these two
+//import  Chart  from './Chart'
+//import  ChartFunc  from './ChartFunc'
+
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('MyApp');
+    const [app, setApp] = useState('ChooseAnApp');
     const [action, setAction] = useState('networkDiagram');
+
+    //chartsForNodesRender NOT NEEDED remove it - and - REMOVE THE AXIOS3... FUNCTIONS ALSO 
     const [chartsForNodesRender, setChartsForNodesRender] = useState('');
-    const [networkNodes, setNetworkNodes] = useState();
+    //NOT NEEDED - const [networkNodes, setNetworkNodes] = useState();
     
     // setting this may try a re-render - need to check
     //const [networkSVG, setNetworkSVG] = useState();
@@ -73,7 +77,7 @@ export default function Main(){
         console.log("DisplayNetworkDiagram(): App is: " + app)
         console.log("DisplayNetworkDiagram(): Action is: " + action)
 
-        if (app == "MyApp" && action == 'networkDiagram') {
+        if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
             return(DGApp(app))
         } else {
@@ -87,7 +91,7 @@ export default function Main(){
       console.log("DisplayLineChart(): App is: " + app)
       console.log("DisplayLineChart(): Action is: " + action)
 
-      if (app == "MyApp" && action == 'networkDiagram') {
+      if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
           // dont enclose the <div> part below in quotes or double-quotes
           return(<div> <LineChartClass nodeName={app}/> </div>)  
@@ -95,6 +99,12 @@ export default function Main(){
           //return ("Cannot generate network diagram for this app: " + app)
           return ("Choose the correct combination of app and action")
       }
+  }
+
+  const DisplayCharts = () => {
+
+    console.log("DisplayCharts(): Entering")
+    return(<LineChartMultiRenderClass appName={app} />)
   }
 
   // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
@@ -244,7 +254,7 @@ export default function Main(){
           </div>
           <div>
               <br></br>
-               <LineChartMultiRenderClass appName={app} />
+               <DisplayCharts />
           </div>
         </section>
 
