@@ -64,21 +64,11 @@ export default function Main(){
 
     // for section that displays messages based on chosen parameters
     const MessageForChosenValues = () => {
-
-      if (app == "ChooseAnApp") {
-        const message = "Cannot choose this app: " + app + ". Choose a different app"
-        return (<div><h3>{message}</h3><br></br></div>)
-        //return ("Cannot choose this app: " + app + ". Choose a different app")
-      } else {
-        return ("Creating panels for: " + app + " (it may take a few moments)")
-      }
-      /*
         if (app == "MyApp" && action == 'networkDiagram') {
             return ("Network diagram for: " + app + " (may take a few moments)")
         } else {
             return ("Cannot generate network-diagram for this app: " + app + ". Choose a different app")
         }
-      */
     }
 
     // function for displaying network diagram
@@ -86,19 +76,7 @@ export default function Main(){
             
         console.log("DisplayNetworkDiagram(): App is: " + app)
         console.log("DisplayNetworkDiagram(): Action is: " + action)
-        
-        if (app != "ChooseAnApp" && action == 'networkDiagram') {
-          return(DGApp(app))
-          } else {
-            if (action == 'graphs') {
-              return ("Will not generate network diagram for this app - per your choice: " + app)
-              //return ("Choose the correct combination of app and action")
-            } else {
-            return ("Cannot generate network diagram for this app: " + app)
-          }
-        }
 
-        /*
         if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
             return(DGApp(app))
@@ -106,28 +84,7 @@ export default function Main(){
             //return ("Cannot generate network diagram for this app: " + app)
             return ("Choose the correct combination of app and action")
         }
-        */
     }
-
-    // to display charts for all nodes
-    const DisplayCharts = () => {
-      console.log("DisplayCharts(): Entering")
-
-      if (app != "ChooseAnApp") {
-        return(<LineChartMultiRenderClass appName={app} />)
-      } else {
-        return ("Cannot generate line charts for this app: " + app)
-        //return ("Choose the correct combination of app and action")
-      }
-    }
-
-    // to display all components
-    const DisplayAllComponents = () => {
-      DisplayNetworkDiagram()
-      DisplayCharts()
-    }
-
-    // SHOULD WE KEEP OR REMOVE THIS
     // function for displaying line chart
     const DisplayLineChart = () => {
             
@@ -142,14 +99,19 @@ export default function Main(){
           //return ("Cannot generate network diagram for this app: " + app)
           return ("Choose the correct combination of app and action")
       }
-    }
+  }
 
-    // REMOVE THIS
-    // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
-    // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
-    // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
-    // REMOVE THIS
-    const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
+  const DisplayCharts = () => {
+
+    console.log("DisplayCharts(): Entering")
+    return(<LineChartMultiRenderClass appName={app} />)
+  }
+
+  // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
+  // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
+  // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
+  
+  const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
       const url = 'http://localhost:8081/nodes/' + app
       try {
         const res = await axios.get(url);
@@ -163,10 +125,9 @@ export default function Main(){
       catch (err) {
         console.log(err)
       }
-    }
+  }
 
-    // REMOVE THIS
-    const DisplayChartsForTheNodesAxios3a = () => {
+  const DisplayChartsForTheNodesAxios3a = () => {
 
     if (app != "MyApp2") {
       return "Choose MyApp2 and networkDiagram"
@@ -290,8 +251,7 @@ export default function Main(){
           </div>
           <div>
               <br></br>
-              <h2>Line Charts</h2>
-              <DisplayCharts />
+               <DisplayCharts />
           </div>
         </section>
 
@@ -345,21 +305,6 @@ export default function Main(){
               <h2>Charts for the Nodes</h2>
               <DisplayChartsForTheNodesAxios3a />
           </div>
-          <div>
-              <button onClick={DisplayAllComponents}>Display Charts</button>
-          </div>
-          <div>
-              <br></br>
-               <MessageForChosenValues />
-          </div>
-          <div>
-               <h2>Network Diagram</h2>
-               <DisplayNetworkDiagram />
-          </div>
-          <div>
-              <br></br>
-              <h2>Line Charts</h2>
-              <DisplayCharts />
         </section>
       )
 */

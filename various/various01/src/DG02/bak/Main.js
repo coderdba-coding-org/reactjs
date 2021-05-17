@@ -66,7 +66,9 @@ export default function Main(){
     const MessageForChosenValues = () => {
 
       if (app == "ChooseAnApp") {
-        return ("Cannot choose this app: " + app + ". Choose a different app")
+        const message = "Cannot choose this app: " + app + ". Choose a different app"
+        return (<div><h3>{message}</h3><br></br></div>)
+        //return ("Cannot choose this app: " + app + ". Choose a different app")
       } else {
         return ("Creating panels for: " + app + " (it may take a few moments)")
       }
@@ -88,9 +90,9 @@ export default function Main(){
         if (app != "ChooseAnApp" && action == 'networkDiagram') {
           return(DGApp(app))
           } else {
-          if (action == 'graphs') {
-            return ("Will not generate network diagram for this app: " + app)
-            //return ("Choose the correct combination of app and action")
+            if (action == 'graphs') {
+              return ("Will not generate network diagram for this app - per your choice: " + app)
+              //return ("Choose the correct combination of app and action")
             } else {
             return ("Cannot generate network diagram for this app: " + app)
           }
@@ -117,6 +119,12 @@ export default function Main(){
         return ("Cannot generate line charts for this app: " + app)
         //return ("Choose the correct combination of app and action")
       }
+    }
+
+    // to display all components
+    const DisplayAllComponents = () => {
+      DisplayNetworkDiagram()
+      DisplayCharts()
     }
 
     // SHOULD WE KEEP OR REMOVE THIS
@@ -337,6 +345,21 @@ export default function Main(){
               <h2>Charts for the Nodes</h2>
               <DisplayChartsForTheNodesAxios3a />
           </div>
+          <div>
+              <button onClick={DisplayAllComponents}>Display Charts</button>
+          </div>
+          <div>
+              <br></br>
+               <MessageForChosenValues />
+          </div>
+          <div>
+               <h2>Network Diagram</h2>
+               <DisplayNetworkDiagram />
+          </div>
+          <div>
+              <br></br>
+              <h2>Line Charts</h2>
+              <DisplayCharts />
         </section>
       )
 */
