@@ -10,19 +10,23 @@
 
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
-import  Chart  from './Chart'
-import  ChartFunc  from './ChartFunc'
 import axios from 'axios'
 import LineChartClass from './LineChart-Class'
 import LineChartMultiRenderClass from './LineChart-MultiRender-Class'
 
+//We are using LineChart-Class.js now instead of these two
+//import  Chart  from './Chart'
+//import  ChartFunc  from './ChartFunc'
+
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('MyApp');
+    const [app, setApp] = useState('ChooseAnApp');
     const [action, setAction] = useState('networkDiagram');
+
+    //chartsForNodesRender NOT NEEDED remove it - and - REMOVE THE AXIOS3... FUNCTIONS ALSO 
     const [chartsForNodesRender, setChartsForNodesRender] = useState('');
-    const [networkNodes, setNetworkNodes] = useState();
+    //NOT NEEDED - const [networkNodes, setNetworkNodes] = useState();
     
     // setting this may try a re-render - need to check
     //const [networkSVG, setNetworkSVG] = useState();
@@ -60,11 +64,19 @@ export default function Main(){
 
     // for section that displays messages based on chosen parameters
     const MessageForChosenValues = () => {
+
+      if (app == "ChooseAnApp") {
+        return ("Cannot choose this app: " + app + ". Choose a different app")
+      } else {
+        return ("Creating panels for: " + app + " (it may take a few moments)")
+      }
+      /*
         if (app == "MyApp" && action == 'networkDiagram') {
             return ("Network diagram for: " + app + " (may take a few moments)")
         } else {
             return ("Cannot generate network-diagram for this app: " + app + ". Choose a different app")
         }
+      */
     }
 
     // function for displaying network diagram
@@ -72,22 +84,49 @@ export default function Main(){
             
         console.log("DisplayNetworkDiagram(): App is: " + app)
         console.log("DisplayNetworkDiagram(): Action is: " + action)
+        
+        if (app != "ChooseAnApp" && action == 'networkDiagram') {
+          return(DGApp(app))
+          } else {
+          if (action == 'graphs') {
+            return ("Will not generate network diagram for this app: " + app)
+            //return ("Choose the correct combination of app and action")
+            } else {
+            return ("Cannot generate network diagram for this app: " + app)
+          }
+        }
 
-        if (app == "MyApp" && action == 'networkDiagram') {
+        /*
+        if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
             return(DGApp(app))
         } else {
             //return ("Cannot generate network diagram for this app: " + app)
             return ("Choose the correct combination of app and action")
         }
+        */
     }
+
+    // to display charts for all nodes
+    const DisplayCharts = () => {
+      console.log("DisplayCharts(): Entering")
+
+      if (app != "ChooseAnApp") {
+        return(<LineChartMultiRenderClass appName={app} />)
+      } else {
+        return ("Cannot generate line charts for this app: " + app)
+        //return ("Choose the correct combination of app and action")
+      }
+    }
+
+    // SHOULD WE KEEP OR REMOVE THIS
     // function for displaying line chart
     const DisplayLineChart = () => {
             
       console.log("DisplayLineChart(): App is: " + app)
       console.log("DisplayLineChart(): Action is: " + action)
 
-      if (app == "MyApp" && action == 'networkDiagram') {
+      if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
           // dont enclose the <div> part below in quotes or double-quotes
           return(<div> <LineChartClass nodeName={app}/> </div>)  
@@ -95,13 +134,14 @@ export default function Main(){
           //return ("Cannot generate network diagram for this app: " + app)
           return ("Choose the correct combination of app and action")
       }
-  }
+    }
 
-  // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
-  // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
-  // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
-  
-  const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
+    // REMOVE THIS
+    // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
+    // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
+    // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
+    // REMOVE THIS
+    const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
       const url = 'http://localhost:8081/nodes/' + app
       try {
         const res = await axios.get(url);
@@ -115,9 +155,10 @@ export default function Main(){
       catch (err) {
         console.log(err)
       }
-  }
+    }
 
-  const DisplayChartsForTheNodesAxios3a = () => {
+    // REMOVE THIS
+    const DisplayChartsForTheNodesAxios3a = () => {
 
     if (app != "MyApp2") {
       return "Choose MyApp2 and networkDiagram"
@@ -182,7 +223,6 @@ export default function Main(){
       Promise
         [[PromiseState]]: "fulfilled"
         [[PromiseResult]]: "work in progress"
-
     We need to take out PromiseResult and return it
     */
 
@@ -190,13 +230,11 @@ export default function Main(){
     const gotval = chartsForNodes
     console.log("DisplayChartsForTheNodesAxios3a(): gotval: ")
     console.log(gotval)
-
     
     gotval.then(res => {
       console.log("DisplayChartsForTheNodesAxios3a(): gotval promise-result: ")
       console.log(res) // this prints fine
     })
-
     return gotval
     */
 
@@ -244,7 +282,8 @@ export default function Main(){
           </div>
           <div>
               <br></br>
-               <LineChartMultiRenderClass appName={app} />
+              <h2>Line Charts</h2>
+              <DisplayCharts />
           </div>
         </section>
 
@@ -299,7 +338,6 @@ export default function Main(){
               <DisplayChartsForTheNodesAxios3a />
           </div>
         </section>
-
       )
 */
 

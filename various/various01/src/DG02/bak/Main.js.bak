@@ -10,17 +10,23 @@
 
 import React, { useState } from 'react';
 import { DGApp } from './DGApp'
-import  Chart  from './Chart'
-import  ChartFunc  from './ChartFunc'
 import axios from 'axios'
 import LineChartClass from './LineChart-Class'
+import LineChartMultiRenderClass from './LineChart-MultiRender-Class'
+
+//We are using LineChart-Class.js now instead of these two
+//import  Chart  from './Chart'
+//import  ChartFunc  from './ChartFunc'
 
 export default function Main(){
 
     // state to store the network json with baseline and actual values as well
-    const [app, setApp] = useState('MyApp');
+    const [app, setApp] = useState('ChooseAnApp');
     const [action, setAction] = useState('networkDiagram');
-    const [networkNodes, setNetworkNodes] = useState();
+
+    //chartsForNodesRender NOT NEEDED remove it - and - REMOVE THE AXIOS3... FUNCTIONS ALSO 
+    const [chartsForNodesRender, setChartsForNodesRender] = useState('');
+    //NOT NEEDED - const [networkNodes, setNetworkNodes] = useState();
     
     // setting this may try a re-render - need to check
     //const [networkSVG, setNetworkSVG] = useState();
@@ -58,11 +64,19 @@ export default function Main(){
 
     // for section that displays messages based on chosen parameters
     const MessageForChosenValues = () => {
+
+      if (app == "ChooseAnApp") {
+        return ("Cannot choose this app: " + app + ". Choose a different app")
+      } else {
+        return ("Creating panels for: " + app + " (it may take a few moments)")
+      }
+      /*
         if (app == "MyApp" && action == 'networkDiagram') {
             return ("Network diagram for: " + app + " (may take a few moments)")
         } else {
             return ("Cannot generate network-diagram for this app: " + app + ". Choose a different app")
         }
+      */
     }
 
     // function for displaying network diagram
@@ -70,22 +84,49 @@ export default function Main(){
             
         console.log("DisplayNetworkDiagram(): App is: " + app)
         console.log("DisplayNetworkDiagram(): Action is: " + action)
+        
+        if (app != "ChooseAnApp" && action == 'networkDiagram') {
+          return(DGApp(app))
+          } else {
+          if (action == 'graphs') {
+            return ("Will not generate network diagram for this app: " + app)
+            //return ("Choose the correct combination of app and action")
+            } else {
+            return ("Cannot generate network diagram for this app: " + app)
+          }
+        }
 
-        if (app == "MyApp" && action == 'networkDiagram') {
+        /*
+        if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
             return(DGApp(app))
         } else {
             //return ("Cannot generate network diagram for this app: " + app)
             return ("Choose the correct combination of app and action")
         }
+        */
     }
+
+    // to display charts for all nodes
+    const DisplayCharts = () => {
+      console.log("DisplayCharts(): Entering")
+
+      if (app != "ChooseAnApp") {
+        return(<LineChartMultiRenderClass appName={app} />)
+      } else {
+        return ("Cannot generate line charts for this app: " + app)
+        //return ("Choose the correct combination of app and action")
+      }
+    }
+
+    // SHOULD WE KEEP OR REMOVE THIS
     // function for displaying line chart
     const DisplayLineChart = () => {
             
       console.log("DisplayLineChart(): App is: " + app)
       console.log("DisplayLineChart(): Action is: " + action)
 
-      if (app == "MyApp" && action == 'networkDiagram') {
+      if ((app == "MyApp" && action == 'networkDiagram') || (app == "MyApp2" && action == 'networkDiagram')) {
 
           // dont enclose the <div> part below in quotes or double-quotes
           return(<div> <LineChartClass nodeName={app}/> </div>)  
@@ -93,214 +134,15 @@ export default function Main(){
           //return ("Cannot generate network diagram for this app: " + app)
           return ("Choose the correct combination of app and action")
       }
-  }
-
-  // function to display charts for the nodes
-  // 'async' is required to use 'await' within it
-  //const DisplayChartsForTheNodes = async() => {
-  const DisplayChartsForTheNodesFetchAwait = () => {
-
-    console.log("DisplayChartsForTheNodesFetchAwait(): In the function now.")
-
-    const getNodes = async() => {
-      const response = await fetch('http://localhost:8081/nodes/' + app);
-      const responseJson = await response.json();
-      console.log("DisplayChartsForTheNodes(): responseJson")
-      console.log(responseJson);
-
-      const nodes = responseJson.nodes.map(d => Object.create(d));
-      console.log("DisplayChartsForTheNodes(): nodes")
-      console.log(nodes)
-      console.log(new Date().getTime())
-
-      // return nodes
-      //return responseJson
-
-      const chartList = responseJson.nodes((item, i) => <div> <LineChartClass nodeName={item.Id}/> </div>)
-      return (
-        chartList
-      );
     }
 
-    /*
-    const response = getNodes()
-    console.log("DisplayChartsForTheNodesFetchAwait: response: ", response)
-    console.log(new Date().getTime())
-    *.
-    //return(<div> {response.Id} </div>)
-    //return(<div> <LineChartClass nodeName={response.Id}/> </div>)  
-
-    /*
-    const chartList = response.map((item, i) => <div> <LineChartClass nodeName={item.Id}/> </div>)
-    return (
-      chartList
-    );
-
-    */
-
-    return(getNodes()) 
-
-    //return("Work in progress")
-  }
-
-  //const DisplayChartsForTheNodesAxios = () => {
-
-  function DisplayChartsForTheNodesAxios() {
-
-    console.log("DisplayChartsForTheNodesAxios(): In the function now.")
-
-    const url = 'http://localhost:8081/nodes/' + app
-
-    const axiosMessage = axios.get(url)
-      .then(res => {
-        // get the whole incoming data - which is an array of jsons
-        const dataGotten = res.data;
-
-        console.log("DisplayChartsForTheNodesAxios(): dataGotten: ")
-        console.log(dataGotten)
-       
-        return "finished axios call"
-      });
-
-      return(axiosMessage + "Work in progress")
-  }
-
-  /*
-  // https://stackoverflow.com/questions/47658765/objects-are-not-valid-as-a-react-child-found-object-promise
-  function DisplayChartsForTheNodesAxios2 () {
-  
-    const getNodes = async() => {
-
+    // REMOVE THIS
+    // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
+    // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
+    // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
+    // REMOVE THIS
+    const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
       const url = 'http://localhost:8081/nodes/' + app
-
-      try {
-        const res = await axios.get(url);
-        const resData = res.data
-        const resDataNodes = res.data.nodes
-
-        console.log("DisplayChartsForTheNodesAxios2(): res: ")
-        console.log(res)
-        console.log(typeof(res))
-        console.log("DisplayChartsForTheNodesAxios2(): resData: ")
-        console.log(resData)
-        console.log(typeof(resData))
-        console.log("DisplayChartsForTheNodesAxios2(): resDataNodes: ")
-        console.log(resDataNodes)
-        console.log(typeof(resDataNodes))
-
-        //const items = resData.map((item, i) => (
-        /*
-        const items = resDataNodes.values((item, i) => (
-          <li key={i} className="list-group-item">{item.id}</li>
-        ));
-        */
-
-        /*
-        const resDataNodesMap = Object.values(resDataNodes)
-        console.log("DisplayChartsForTheNodesAxios2(): resDataNodesMap: ")
-        console.log(resDataNodesMap)
-        console.log(typeof(resDataNodesMap))
-
-        return (
-          <div>
-            <ul className="list-group list-group-flush">
-              {items}
-            </ul>
-          </div>
-        );
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
-
-    return getNodes()
-  }
-  */
-
-  // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
-  // https://stackoverflow.com/questions/55561320/how-to-fix-the-map-is-not-a-function-error-in-javascript
-  // https://stackoverflow.com/questions/3199588/fastest-way-to-convert-javascript-nodelist-to-array
-  function DisplayChartsForTheNodesAxios3() {
-  
-    const getNodes = async() => {
-      const url = 'http://localhost:8081/nodes/' + app
-
-      try {
-        const res = await axios.get(url);
-        const resData = res.data
-        const resDataNodes = res.data.nodes
-
-        /*
-        console.log("DisplayChartsForTheNodesAxios2(): res: ")
-        console.log(res)
-        console.log(typeof(res))
-        console.log("DisplayChartsForTheNodesAxios2(): resData: ")
-        console.log(resData)
-        console.log(typeof(resData))
-        console.log("DisplayChartsForTheNodesAxios2(): resDataNodes: ")
-        console.log(resDataNodes)
-        console.log(typeof(resDataNodes))
-        */
-
-        return resData;
-
-        /*
-        const Node = ({id}) => (
-          <div>
-            LineChartClass nodeName={id}
-          </div>
-        );
-
-        return (
-          <div>
-            {resData((Node) => (
-              <Node
-                id={resData.id}
-              />
-            ))}
-          </div>
-        );
-        */
-      }
-      catch (err) {
-        console.log(err)
-      }
-    }
-
-    //let nodeList = []
-    //const nodeList = await getNodes()
-    const nodeList =  getNodes()
-    var nodeListArray = Array.prototype.slice.call(nodeList);
-
-    console.log("DisplayChartsForTheNodesAxios3(): nodeList is: ")
-    console.log(nodeList)
-    console.log("DisplayChartsForTheNodesAxios3(): nodeListArray is: ")
-    console.log(nodeListArray)
-
-    const Node = ({ id }) => (
-      <div>
-        LineChartClass nodeName={id}
-      </div>
-    );
-
-    return (
-      <div>
-        {nodeListArray.map((oneNode) => (
-          <Node
-            id={oneNode.id}
-          />
-        ))}
-      </div>
-    );
-
-    //return getNodes()
-  }
-
-  const DisplayChartsForTheNodesAxios3aFetchURL = async() =>  {
-
-      const url = 'http://localhost:8081/nodes/' + app
-
       try {
         const res = await axios.get(url);
         const resData = res.data
@@ -313,14 +155,17 @@ export default function Main(){
       catch (err) {
         console.log(err)
       }
-    
-  }
+    }
 
-  const DisplayChartsForTheNodesAxios3a = () => {
+    // REMOVE THIS
+    const DisplayChartsForTheNodesAxios3a = () => {
+
+    if (app != "MyApp2") {
+      return "Choose MyApp2 and networkDiagram"
+    }
 
     const chartsForNodes = DisplayChartsForTheNodesAxios3aFetchURL()
     .then(resData => {
-
       console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
       console.log(resData) // prints ok without saying Promise
       console.log("DisplayChartsForTheNodesAxios3a(): resData datatype is: ")
@@ -329,7 +174,7 @@ export default function Main(){
       console.log(resData.nodes)
 
       //const nodeListArray = Object.entries(resData.nodes) // this will be object of a list of arrays
-      const nodeListArray = resData.nodes  // this will be object of list of objects
+      const nodeListArray = resData.nodes  // BEST: this will be object of list of objects
       //const nodeListArray = JSON.parse(resData) // this errors
       //const nodeListArray = Array.prototype.slice.call(resData) // this puts null
       console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
@@ -340,11 +185,11 @@ export default function Main(){
       console.log(nodeListArray.length)
 
       console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray processing")
-      /*
-      nodeListArray.forEach((nodeDetail) =>
-        console.log(nodeDetail[0])
-      )
-      */
+
+      // Use these sites info
+      // Get only the values and generate a segment to render
+      // https://www.pluralsight.com/guides/iterate-through-a-json-response-in-jsx-render-for-reactjs
+      // https://www.pluralsight.com/guides/load-and-render-json-data-into-react-components
 
       nodeListArray.map((item) => { 
         // https://www.samanthaming.com/tidbits/76-converting-object-to-array/
@@ -354,98 +199,48 @@ export default function Main(){
         console.log(Object.values(item)) // this prints ok when nodeListArrau = resData.nodes
         console.log(Object.values(item)[0]) // this prints ok when nodeListArrau = resData.nodes
       });
-        
-      
+
+      // <div> <LineChartClass nodeName={Object.values(item)[0]}/> </div>
+
+      //return (
+      setChartsForNodesRender(
+        <div>
+          {nodeListArray.map((item) => (
+            <div><LineChartClass nodeName={Object.values(item)[0]}/></div>
+          ))}
+        </div>
+      )    
+      //return "work in progress"
+      //setChartsForNodesRender("work in progress x")
 
     }); // this the end of 'then'
 
-    /*
-    const Node = ({ id }) => (
-      <div>
-        LineChartClass nodeName={id}
-      </div>
-    );
-    
-    return (
-      <div>
-        {nodeListArray.map((oneNode) => (
-          <Node
-            id={oneNode.id}
-          />
-        ))}
-      </div>
-    );
-
-    */
-
-    /*
-      const Node = ({ id }) => (
-        <div>
-          LineChartClass nodeName={id}
-        </div>
-      );
-    
-      // https://www.pluralsight.com/guides/load-and-render-json-data-into-react-components
-      return (
-        <div className="charts-for-nodes">
-          {nodeListArray.map((oneNode, key) => (
-            <div key={key}>
-              <Node
-                id={oneNode.id}
-              />
-            </div>
-          ))}
-        </div>
-      );
-    */
-
     //return "work in progress"
-    return chartsForNodes
-  }
+    //return chartsForNodes
 
-  const DisplayChartsForTheNodesAxios3a0 = () => {
-
-    const getData = async()=>{
-    const resData = await DisplayChartsForTheNodesAxios3aFetchURL()  
-    console.log("DisplayChartsForTheNodesAxios3a(): resData is: ")
-    console.log(resData) // prints this ok - does not say promise
-
-    return resData
-    }
-
-    const nodeList = getData()
-
-    //var nodeList = []
-    //nodeList = await DisplayChartsForTheNodesAxios3aFetchURL()  
-    //var nodeListArray = []
-    const nodeListArray = Array.prototype.slice.call(nodeList)
-
-    console.log("DisplayChartsForTheNodesAxios3a(): nodeList is: ")
-    console.log(nodeList)
-    //console.log("DisplayChartsForTheNodesAxios3a(): nodeListArray is: ")
-    //console.log(nodeListArray)
-
-    /*
-    const Node = ({ id }) => (
-      <div>
-        LineChartClass nodeName={id}
-      </div>
-    );
-    
-    return (
-      <div>
-        {nodeListArray.map((oneNode) => (
-          <Node
-            id={oneNode.id}
-          />
-        ))}
-      </div>
-    );
-
+    /* here, we will have these from Promise:
+    Promise__proto__: 
+      Promise
+        [[PromiseState]]: "fulfilled"
+        [[PromiseResult]]: "work in progress"
+    We need to take out PromiseResult and return it
     */
 
-    return "work in progress"
-    //return getNodes()
+    /*
+    const gotval = chartsForNodes
+    console.log("DisplayChartsForTheNodesAxios3a(): gotval: ")
+    console.log(gotval)
+    
+    gotval.then(res => {
+      console.log("DisplayChartsForTheNodesAxios3a(): gotval promise-result: ")
+      console.log(res) // this prints fine
+    })
+    return gotval
+    */
+
+    const gotval = chartsForNodes
+    return chartsForNodesRender
+
   }
 
     // TBD:
@@ -482,8 +277,13 @@ export default function Main(){
                <MessageForChosenValues />
           </div>
           <div>
-              <h2>Charts for the Nodes</h2>
-              <DisplayChartsForTheNodesAxios3a />
+               <h2>Network Diagram</h2>
+               <DisplayNetworkDiagram />
+          </div>
+          <div>
+              <br></br>
+              <h2>Line Charts</h2>
+              <DisplayCharts />
           </div>
         </section>
 
@@ -533,8 +333,11 @@ export default function Main(){
           <div>
               <DisplayChartsForTheNodes />
           </div>
+          <div>
+              <h2>Charts for the Nodes</h2>
+              <DisplayChartsForTheNodesAxios3a />
+          </div>
         </section>
-
       )
 */
 

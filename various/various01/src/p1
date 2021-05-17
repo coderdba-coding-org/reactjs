@@ -1,0 +1,2 @@
+rm App.js
+ln -s App.js.Plotly01.Plotly01.js App.js

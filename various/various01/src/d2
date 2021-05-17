@@ -1,2 +1,2 @@
 rm App.js
-ln -s App.js.DG02.js App.js
+ln -s App.js.DG02.Main.js App.js
