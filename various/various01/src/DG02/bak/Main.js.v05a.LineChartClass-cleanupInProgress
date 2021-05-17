@@ -201,11 +201,11 @@ export default function Main(){
 
       nodeListArray.map((item) => { 
         // https://www.samanthaming.com/tidbits/76-converting-object-to-array/
-        console.log(item) // this prints ok when nodeListArrau = resData.nodes
-        console.log(Object.keys(item)) // this prints ok when nodeListArrau = resData.nodes
-        console.log(Object.keys(item)[0]) // this prints ok when nodeListArrau = resData.nodes
-        console.log(Object.values(item)) // this prints ok when nodeListArrau = resData.nodes
-        console.log(Object.values(item)[0]) // this prints ok when nodeListArrau = resData.nodes
+        console.log(item) // this prints ok when nodeListArray = resData.nodes
+        console.log(Object.keys(item)) // this prints ok when nodeListArray = resData.nodes
+        console.log(Object.keys(item)[0]) // this prints ok when nodeListArray = resData.nodes
+        console.log(Object.values(item)) // this prints ok when nodeListArray = resData.nodes
+        console.log(Object.values(item)[0]) // this prints ok when nodeListArray = resData.nodes
       });
 
       // <div> <LineChartClass nodeName={Object.values(item)[0]}/> </div>
@@ -360,6 +360,7 @@ export default function Main(){
               <br></br>
               <h2>Line Charts</h2>
               <DisplayCharts />
+          </div>
         </section>
       )
 */
